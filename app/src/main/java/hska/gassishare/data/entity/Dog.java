@@ -28,7 +28,7 @@ public class Dog {
 
     private String beschreibung;
 
-    public Dog(int id, int user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Boolean kastriert, String beschreibung) {
+    public Dog(int id, @NonNull int user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Boolean kastriert, String beschreibung) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
