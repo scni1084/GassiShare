@@ -17,7 +17,7 @@ public interface UserDao {
     // data has changed. Since we are getting all the contents of the database,
     // we are notified whenever any of the database contents have changed.
     @Query("SELECT * FROM user_table ORDER BY username ASC")
-    LiveData<List<User>> getAlphabetizedWords();
+    LiveData<List<User>> getAlphabetizedUsers();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(User user);

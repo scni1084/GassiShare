@@ -17,7 +17,7 @@ public interface DogDao {
     // data has changed. Since we are getting all the contents of the database,
     // we are notified whenever any of the database contents have changed.
     @Query("SELECT * FROM dog_table ORDER BY id ASC")
-    LiveData<List<Dog>> getAlphabetizedWords();
+    LiveData<List<Dog>> getAlphabetizedDogs();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Dog dog);
