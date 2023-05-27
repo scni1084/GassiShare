@@ -18,20 +18,20 @@ import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 
 @Database(entities = {User.class, Dog.class}, version = 1, exportSchema = false)
-abstract class GassishareDatabase extends RoomDatabase {
+public abstract class GassishareDatabase extends RoomDatabase {
 
-    abstract UserDao userDao();
+    public abstract UserDao userDao();
 
-    abstract DogDao dogDao();
+    public abstract DogDao dogDao();
 
 
     // marking the instance as volatile to ensure atomic access to the variable
     private static volatile GassishareDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static GassishareDatabase getDatabase(final Context context) {
+    public static GassishareDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (GassishareDatabase.class) {
                 if (INSTANCE == null) {
