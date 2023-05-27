@@ -9,7 +9,7 @@ import java.util.List;
 
 import hska.gassishare.data.entity.User;
 
-public interface UserDAO {
+public interface UserDao {
     // LiveData is a data holder class that can be observed within a given lifecycle.
     // Always holds/caches latest version of data. Notifies its active observers when the
     // data has changed. Since we are getting all the contents of the database,
