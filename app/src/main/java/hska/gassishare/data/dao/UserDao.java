@@ -1,6 +1,7 @@
 package hska.gassishare.data.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import hska.gassishare.data.entity.User;
 
+@Dao
 public interface UserDao {
     // LiveData is a data holder class that can be observed within a given lifecycle.
     // Always holds/caches latest version of data. Notifies its active observers when the
