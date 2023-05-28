@@ -1,4 +1,4 @@
-package hska.gassishare.ui.profile;
+package hska.gassishare.ui.person;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,25 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import hska.gassishare.databinding.FragmentProfileBinding;
+import hska.gassishare.databinding.FragmentPersonBinding;
 
-public class ProfileFragment extends Fragment {
+public class PersonFragment extends Fragment {
 
-    private FragmentProfileBinding binding;
+    private FragmentPersonBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+        hska.gassishare.ui.person.PersonViewModel personViewModel =
+                new ViewModelProvider(this).get(PersonViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;
-
     }
-
-
 
     @Override
     public void onDestroyView() {

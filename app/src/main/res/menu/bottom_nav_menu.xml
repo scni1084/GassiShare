@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_Login"
+        android:id="@+id/navigation_login"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_login" />
 
@@ -12,14 +12,15 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_chat"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/sprechblase"
-        android:title="@string/title_chat" />
+        android:title="@string/title_profile" />
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_person"
         android:icon="@drawable/ic_profile_black_24dp"
-        android:title="@string/title_profile" />
+        android:title="@string/title_person" />
+
 
     <item
         android:id="@+id/navigation_dog"
