@@ -28,4 +28,10 @@
         android:name="hska.gassishare.ui.chat.ChatFragment"
         android:label="@string/title_chat"
         tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/navigation_dog"
+        android:name="hska.gassishare.ui.dog.DogFragment"
+        android:label="@string/title_dog"
+        tools:layout="@layout/fragment_dog" />
 </navigation>

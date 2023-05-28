@@ -8,5 +8,6 @@
     <string name="benutzername">Benutzername</string>
     <string name="passwort">Passwort</string>
     <string name="name_eingeben">Name eingeben...</string>
+    <string name="title_dog">Hund</string>
 
 </resources>
