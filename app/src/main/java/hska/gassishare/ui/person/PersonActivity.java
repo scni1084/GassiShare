@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
@@ -23,7 +25,9 @@ public class PersonActivity extends AppCompatActivity {
     private EditText editPassNew;
     private Button saveButton;
 
+    private PersonViewModel viewModel;
     private User currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +42,28 @@ public class PersonActivity extends AppCompatActivity {
         editPassNew = findViewById(R.id.editPassNew);
         saveButton = findViewById(R.id.buttonSpeichern);
 
+        // Create the ViewModel instance
+        viewModel = new ViewModelProvider(this).get(PersonViewModel.class);
+
+        // Observe the currentUserLiveData to update the UI
+        viewModel.getCurrentUserLiveData().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                currentUser = user;
+                if (currentUser != null) {
+                    editVorname.setText(currentUser.getVorname());
+                    editNachname.setText(currentUser.getNachname());
+                    editEmail.setText(currentUser.getEmail());
+                    editBenutzername.setText(currentUser.getUsername());
+                }
+            }
+        });
+
         // Get the current user data from intent or database
         // Example: Get user data from intent
         if (getIntent().hasExtra("currentUser")) {
             currentUser = getIntent().getParcelableExtra("currentUser");
-        }
-
-        // Populate the existing data in EditText fields
-        if (currentUser != null) {
-            editVorname.setText(currentUser.getVorname());
-            editNachname.setText(currentUser.getNachname());
-            editEmail.setText(currentUser.getEmail());
-            editBenutzername.setText(currentUser.getUsername());
-            editPlz.setText(currentUser.getPlz());
-            editStrasse.setText(currentUser.getStrasse());
-            editOrt.setText(currentUser.getOrt());
+            viewModel.setCurrentUser(currentUser);
         }
 
         saveButton.setOnClickListener(new View.OnClickListener() {

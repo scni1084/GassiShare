@@ -1,6 +1,7 @@
 package hska.gassishare.ui.person;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import hska.gassishare.data.entity.User;
@@ -19,6 +20,9 @@ public class PersonViewModel extends ViewModel {
     private UserRepository mUserRepository;
     private LiveData<User> mCurrentUserData;
 
+    private MutableLiveData<User> currentUserLiveData;
+
+
     public PersonViewModel(UserRepository userRepository, int userId) {
         mUserRepository = userRepository;
         mCurrentUserData = mUserRepository.getCurrentUser(userId);
@@ -28,6 +32,9 @@ public class PersonViewModel extends ViewModel {
         return mCurrentUserData;
     }
 
+    public PersonViewModel() {
+        currentUserLiveData = new MutableLiveData<>();
+    }
     public String getUsername() {
         if (mCurrentUserData.getValue() != null) {
             return mCurrentUserData.getValue().getUsername();
@@ -47,6 +54,14 @@ public class PersonViewModel extends ViewModel {
             return mCurrentUserData.getValue().getNachname();
         }
         return "";
+    }
+
+    public LiveData<User> getCurrentUserLiveData() {
+        return currentUserLiveData;
+    }
+
+    public void setCurrentUser(User user) {
+        currentUserLiveData.setValue(user);
     }
 
 }
