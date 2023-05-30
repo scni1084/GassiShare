@@ -38,4 +38,10 @@ class UserRepository {
             mUserDao.insert(user);
         });
     }
+
+    void update(User user) {
+        GassishareDatabase.databaseWriteExecutor.execute(() -> {
+            mUserDao.update(user);
+        });
+    }
 }
