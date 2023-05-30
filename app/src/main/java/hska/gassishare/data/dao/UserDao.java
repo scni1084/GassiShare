@@ -28,4 +28,8 @@ public interface UserDao {
 
     @Update
     void  update(User user);
+
+    @Query("SELECT * FROM user_table WHERE id = :userId")
+    LiveData<User> getCurrentUser(int userId);
+
 }

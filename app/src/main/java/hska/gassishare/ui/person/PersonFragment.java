@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import hska.gassishare.databinding.FragmentPersonBinding;
+import hska.gassishare.ui.profile.ProfileViewModel;
 
 public class PersonFragment extends Fragment {
 
@@ -17,8 +18,8 @@ public class PersonFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        hska.gassishare.ui.person.PersonViewModel personViewModel =
-                new ViewModelProvider(this).get(PersonViewModel.class);
+        ProfileViewModel profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
 
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

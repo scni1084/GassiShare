@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "user_table")
 public class User {
 
@@ -98,4 +100,13 @@ public class User {
     public String getOrt() {
         return this.ort;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && username.equals(user.username) && nachname.equals(user.nachname) && vorname.equals(user.vorname) && passwort.equals(user.passwort) && email.equals(user.email) && Objects.equals(beschreibung, user.beschreibung) && plz.equals(user.plz) && strasse.equals(user.strasse) && ort.equals(user.ort);
+    }
+
 }

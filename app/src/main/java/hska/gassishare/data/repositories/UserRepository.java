@@ -10,10 +10,12 @@ import hska.gassishare.data.dao.UserDao;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.User;
 
-class UserRepository {
+public class UserRepository {
 
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
+
+    private LiveData<User> mCurrentUserData;
 
     // Note that in order to unit test the UserRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -43,5 +45,10 @@ class UserRepository {
         GassishareDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.update(user);
         });
+    }
+
+    public LiveData<User> getCurrentUser(int userId) {
+        mCurrentUserData = mUserDao.getCurrentUser(userId);
+        return mCurrentUserData;
     }
 }
