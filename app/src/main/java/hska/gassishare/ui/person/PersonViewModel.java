@@ -34,6 +34,8 @@ public class PersonViewModel extends ViewModel {
 
     public PersonViewModel() {
         currentUserLiveData = new MutableLiveData<>();
+        // Aktuellen User aus dem Repository ermitteln
+        currentUserLiveData = (MutableLiveData<User>) mUserRepository.getCurrentUser(1);
     }
     public String getUsername() {
         if (mCurrentUserData.getValue() != null) {

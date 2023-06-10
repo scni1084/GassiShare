@@ -1,6 +1,8 @@
 package hska.gassishare.data.database;
 
 
+import static java.lang.System.in;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -27,9 +29,8 @@ public abstract class GassishareDatabase extends RoomDatabase {
 
     // marking the instance as volatile to ensure atomic access to the variable
     private static volatile GassishareDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
-    public static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static final int NUMBER_OF_THREADS = 1;
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static GassishareDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -39,6 +40,26 @@ public abstract class GassishareDatabase extends RoomDatabase {
                                     GassishareDatabase.class, "app_database")
                             .addCallback(sGassishareDatabaseCallback)
                             .build();
+
+
+                    INSTANCE.userDao().getAlphabetizedUsers();
+
+
+/*
+                    DogDao dogDao = INSTANCE.dogDao();
+                    UserDao userDao = INSTANCE.userDao();
+                    dogDao.deleteAll();
+                    userDao.deleteAll();
+
+                    MockData mockData = new MockData();
+
+                    for (User usr : mockData.userList) {
+                        userDao.insert(usr);
+                    }
+
+                    for (Dog doggo : mockData.doggoList) {
+                        dogDao.insert(doggo);
+                    } */
                 }
             }
         }
@@ -51,6 +72,7 @@ public abstract class GassishareDatabase extends RoomDatabase {
      * For this sample, we clear the database every time it is created.
      */
     private static RoomDatabase.Callback sGassishareDatabaseCallback = new RoomDatabase.Callback() {
+
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -63,14 +85,15 @@ public abstract class GassishareDatabase extends RoomDatabase {
                 dogDao.deleteAll();
                 userDao.deleteAll();
 
-                Dog dog = new Dog(1, 100, "Wuffi", 3, "weiblich",
-                        "Labrador", true, "Ein lieber Wuffi");
-                User user = new User(100, "herrchen10",
-                        "Mustermann", "Max",
-                        "pw", "max.mustermann@m.de", "Ich bin Max",
-                        76131, "Musterstrasse", "Karlsruhe");
-                dogDao.insert(dog);
-                userDao.insert(user);
+                MockData mockData = new MockData();
+
+                for (User usr : mockData.userList) {
+                    userDao.insert(usr);
+                }
+
+                for (Dog doggo : mockData.doggoList) {
+                    dogDao.insert(doggo);
+                }
             });
         }
     };

@@ -21,7 +21,7 @@ public class UserRepository {
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
     // https://github.com/googlesamples
-    UserRepository(Application application) {
+    public UserRepository(Application application) {
         GassishareDatabase db = GassishareDatabase.getDatabase(application);
         mUserDao = db.userDao();
         mAllUsers = mUserDao.getAlphabetizedUsers();
@@ -29,7 +29,7 @@ public class UserRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    LiveData<List<User>> getAllUsers() {
+    public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
 

@@ -109,4 +109,19 @@ public class User {
         return id == user.id && username.equals(user.username) && nachname.equals(user.nachname) && vorname.equals(user.vorname) && passwort.equals(user.passwort) && email.equals(user.email) && Objects.equals(beschreibung, user.beschreibung) && plz.equals(user.plz) && strasse.equals(user.strasse) && ort.equals(user.ort);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", nachname='" + nachname + '\'' +
+                ", vorname='" + vorname + '\'' +
+                ", passwort='" + passwort + '\'' +
+                ", email='" + email + '\'' +
+                ", beschreibung='" + beschreibung + '\'' +
+                ", plz=" + plz +
+                ", strasse='" + strasse + '\'' +
+                ", ort='" + ort + '\'' +
+                '}';
+    }
 }
