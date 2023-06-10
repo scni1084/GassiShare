@@ -15,6 +15,8 @@ public class UserRepository {
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
 
+    private LiveData<User> mUser;
+
     private LiveData<User> mCurrentUserData;
 
     // Note that in order to unit test the UserRepository, you have to remove the Application
@@ -32,6 +34,8 @@ public class UserRepository {
     public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
+
+    public boolean userExists(String username, String password) {return mUserDao.userExisting(username,password);}
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
@@ -51,4 +55,6 @@ public class UserRepository {
         mCurrentUserData = mUserDao.getCurrentUser(userId);
         return mCurrentUserData;
     }
+
+
 }

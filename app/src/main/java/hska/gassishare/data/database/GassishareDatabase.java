@@ -39,6 +39,7 @@ public abstract class GassishareDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     GassishareDatabase.class, "app_database")
                             .addCallback(sGassishareDatabaseCallback)
+                            .allowMainThreadQueries()
                             .build();
 
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
@@ -23,6 +24,8 @@ import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.data.repositories.UserRepository;
 import hska.gassishare.databinding.FragmentLoginBinding;
+import hska.gassishare.ui.map.MapFragment;
+import hska.gassishare.ui.person.PersonFragment;
 
 public class LoginFragment extends Fragment {
 
@@ -37,7 +40,7 @@ public class LoginFragment extends Fragment {
 
     private EditText passwordInput;
 
-    private Button button5;
+    private Button anmeldenButton;
 
     // neu
     public LoginFragment() {
@@ -66,6 +69,7 @@ public class LoginFragment extends Fragment {
         textView3 = getView().findViewById(R.id.textView3);
         usernameInput = getView().findViewById(R.id.UsernameInput);
         passwordInput = getView().findViewById(R.id.PasswordInput);
+        anmeldenButton = getView().findViewById(R.id.AnmeldenButton);
 
         // Create the observer which updates the UI.
         final Observer<List<User>> usersObserver = new Observer<List<User>>() {
@@ -92,6 +96,35 @@ public class LoginFragment extends Fragment {
                 textView3.setText(alleUser);
             }
         };
+
+        // OnClick fuer Anmelde-Button
+        anmeldenButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Button wurde geklickt");
+                String username = String.valueOf(usernameInput.getText());
+                String passwort = String.valueOf(passwordInput.getText());
+
+                //TODO: Prüfen, ob es den User in der DB gibt
+                if(loginViewModel.userExists(username,passwort))
+                {
+                    System.out.println("Der nutzer existiert");
+                }
+
+
+                // In anderes Fragment weiterleiten
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment_activity_main, MapFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("LoginToMapTransaction")
+                        .commit();
+
+            }
+
+
+        });
+
+
 
         // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
         loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);

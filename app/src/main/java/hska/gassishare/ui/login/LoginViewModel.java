@@ -27,6 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
         return alleUser;
     }
 
+
     private final MutableLiveData<String> mText;
 
     //private final LiveData<List<User>> mAllUsers;
@@ -34,23 +35,17 @@ public class LoginViewModel extends AndroidViewModel {
     public LoginViewModel(Application application) {
         super(application);
         mText = new MutableLiveData<>();
-        mText.setValue("This is login fragment");
 
-        // weiß nicht ob application hier sinn macht
         mUserRepository = new UserRepository(application);
 
         alleUser = mUserRepository.getAllUsers();
 
-
-        //mAllUsers = mRepository.getAllUsers();
-        //hier muss die Action passieren, dass der User gesucht wird
     }
-
-   // LiveData<List<User>> getAllUsers() {
-    //    return mAllUsers;
-    //}
 
     public LiveData<String> getText() {
         return mText;
     }
+
+    public boolean userExists(String username, String password) {return mUserRepository.userExists(username,password);}
+
 }

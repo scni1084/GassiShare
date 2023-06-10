@@ -32,4 +32,10 @@ public interface UserDao {
     @Query("SELECT * FROM user_table WHERE id = :userId")
     LiveData<User> getCurrentUser(int userId);
 
+
+    @Query("SELECT * FROM user_table WHERE username = :username AND passwort = :passwort")
+    LiveData<User> LoginPruefen(String username, String passwort);
+
+    @Query("SELECT EXISTS (SELECT * FROM user_table WHERE username = :username AND passwort = :password)")
+    boolean userExisting(String username, String password);
 }
