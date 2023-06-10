@@ -3,6 +3,7 @@ package hska.gassishare;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,10 +12,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import hska.gassishare.databinding.ActivityMainBinding;
+import hska.gassishare.ui.login.LoginViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
+    private LoginViewModel loginViewModel;
 
 
     @Override
@@ -36,7 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
     }
 
+    public LoginViewModel getLoginViewModel() {
+        return loginViewModel;
+    }
+
+    public void setLoginViewModel(LoginViewModel loginViewModel) {
+        this.loginViewModel = loginViewModel;
+    }
 }

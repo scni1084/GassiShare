@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
+import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.User;
@@ -58,6 +59,9 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setLoginViewModel(loginViewModel);
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
