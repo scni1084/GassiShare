@@ -1,6 +1,7 @@
 package hska.gassishare.ui.login;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -46,6 +49,7 @@ public class LoginFragment extends Fragment {
     public LoginFragment() {
         super(R.layout.fragment_login);
 
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,6 +61,7 @@ public class LoginFragment extends Fragment {
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
 
         return root;
 
@@ -95,6 +100,8 @@ public class LoginFragment extends Fragment {
 
                 textView3.setText(alleUser);
             }
+
+
         };
 
         // OnClick fuer Anmelde-Button
@@ -105,10 +112,14 @@ public class LoginFragment extends Fragment {
                 String passwort = String.valueOf(passwordInput.getText());
 
                 //TODO: Prüfen, ob es den User in der DB gibt
-                if(loginViewModel.userExists(username,passwort))
-                {
-                    System.out.println("Der nutzer existiert");
+                if(!loginViewModel.userExists(username,passwort)) {
+                    return;
                 }
+
+                    System.out.println("Der nutzer existiert");
+
+                    BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                    navBar.setVisibility(View.VISIBLE);
 
 
                 // In anderes Fragment weiterleiten
@@ -128,6 +139,24 @@ public class LoginFragment extends Fragment {
 
         // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
         loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);
+
+
+
+
+
+        // TODO: Machen wenn activity geladen ist
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+
+                while (navBar == null) {
+                    navBar = getActivity().findViewById(R.id.nav_view);
+
+                }
+                    navBar.setVisibility(View.GONE);
+            }
+        });
     }
 }
 
