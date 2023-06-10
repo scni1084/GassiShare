@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -31,6 +33,12 @@ public class LoginFragment extends Fragment {
     // UI-Elemente
     private TextView textView3;
 
+    private EditText usernameInput;
+
+    private EditText passwordInput;
+
+    private Button button5;
+
     // neu
     public LoginFragment() {
         super(R.layout.fragment_login);
@@ -56,17 +64,30 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         textView3 = getView().findViewById(R.id.textView3);
+        usernameInput = getView().findViewById(R.id.UsernameInput);
+        passwordInput = getView().findViewById(R.id.PasswordInput);
 
         // Create the observer which updates the UI.
         final Observer<List<User>> usersObserver = new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable final List<User> userListe) {
 
+                if (userListe.size() == 0)
+                    return;
+
                 String alleUser = "";
+                User user1 = userListe.get(0);
+
+                usernameInput.setText(user1.getUsername());
+                passwordInput.setText(user1.getPasswort());
+
 
                 for (User u : userListe ) {
                     alleUser = alleUser + u.toString();
+                    //usernameInput.setText(u.getUsername());
+                    //passwordInput.setText(u.getPasswort());
                 }
+
 
                 textView3.setText(alleUser);
             }
