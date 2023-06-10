@@ -14,7 +14,18 @@ import hska.gassishare.data.repositories.UserRepository;
 
 public class LoginViewModel extends AndroidViewModel {
 
-    private UserRepository mRepository;
+    private UserRepository mUserRepository;
+
+    private LiveData<List<User>> alleUser;
+
+    public LiveData<List<User>> getAlleUser() {
+        /* checke nicht warum das nicht geht
+        if (alleUser == null) {
+            alleUser = new LiveData<List<User>>();
+        }*/
+
+        return alleUser;
+    }
 
     private final MutableLiveData<String> mText;
 
@@ -24,8 +35,15 @@ public class LoginViewModel extends AndroidViewModel {
         super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is login fragment");
-        mRepository = new UserRepository(application);
+
+        // weiß nicht ob application hier sinn macht
+        mUserRepository = new UserRepository(application);
+
+        alleUser = mUserRepository.getAllUsers();
+
+
         //mAllUsers = mRepository.getAllUsers();
+        //hier muss die Action passieren, dass der User gesucht wird
     }
 
    // LiveData<List<User>> getAllUsers() {
