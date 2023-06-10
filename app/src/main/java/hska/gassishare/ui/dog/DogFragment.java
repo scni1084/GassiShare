@@ -26,6 +26,8 @@ public class DogFragment extends Fragment {
         return root;
     }
 
+    //TODO: Einzelansicht fuer den Hund wie bei Person
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

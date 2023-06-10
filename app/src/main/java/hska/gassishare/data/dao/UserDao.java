@@ -29,8 +29,8 @@ public interface UserDao {
     @Update
     void  update(User user);
 
-    @Query("SELECT * FROM user_table WHERE id = :userId")
-    LiveData<User> getCurrentUser(int userId);
+    @Query("SELECT * FROM user_table WHERE username = :username")
+    LiveData<User> getCurrentUser(String username);
 
 
     @Query("SELECT * FROM user_table WHERE username = :username AND passwort = :passwort")

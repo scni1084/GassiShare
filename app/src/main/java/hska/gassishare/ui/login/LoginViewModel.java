@@ -27,6 +27,15 @@ public class LoginViewModel extends AndroidViewModel {
         return alleUser;
     }
 
+    private LiveData<User> aktuellerUser;
+
+    public LiveData<User> getAktuellerUser() {
+        return aktuellerUser;
+    }
+
+    public void setAktuellerUser(LiveData<User> aktuellerUser) {
+        this.aktuellerUser = aktuellerUser;
+    }
 
     private final MutableLiveData<String> mText;
 
@@ -47,5 +56,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public boolean userExists(String username, String password) {return mUserRepository.userExists(username,password);}
+
+    public LiveData<User> aktuellerUser(String username) {return mUserRepository.getCurrentUser(username);}
 
 }

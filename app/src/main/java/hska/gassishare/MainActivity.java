@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
+
+
     }
 
     public LoginViewModel getLoginViewModel() {

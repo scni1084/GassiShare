@@ -100,12 +100,8 @@ public class LoginFragment extends Fragment {
                     //usernameInput.setText(u.getUsername());
                     //passwordInput.setText(u.getPasswort());
                 }
-
-
                 textView3.setText(alleUser);
             }
-
-
         };
 
         // OnClick fuer Anmelde-Button
@@ -115,15 +111,19 @@ public class LoginFragment extends Fragment {
                 String username = String.valueOf(usernameInput.getText());
                 String passwort = String.valueOf(passwordInput.getText());
 
-                //TODO: Prüfen, ob es den User in der DB gibt
                 if(!loginViewModel.userExists(username,passwort)) {
                     return;
                 }
 
-                    System.out.println("Der nutzer existiert");
+                System.out.println("Der nutzer existiert");
 
-                    BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-                    navBar.setVisibility(View.VISIBLE);
+                loginViewModel.setAktuellerUser(loginViewModel.aktuellerUser(username));
+
+                //TODO: gibt nur LiveData aus
+                System.out.println(loginViewModel.getAktuellerUser());
+
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                navBar.setVisibility(View.VISIBLE);
 
 
                 // In anderes Fragment weiterleiten

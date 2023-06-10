@@ -51,8 +51,8 @@ public class UserRepository {
         });
     }
 
-    public LiveData<User> getCurrentUser(int userId) {
-        mCurrentUserData = mUserDao.getCurrentUser(userId);
+    public LiveData<User> getCurrentUser(String username) {
+        mCurrentUserData = mUserDao.getCurrentUser(username);
         return mCurrentUserData;
     }
 

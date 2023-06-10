@@ -27,4 +27,6 @@ public class AnimalsFragment extends Fragment {
 
     }
 
+    //TODO: Liste erstellen von den Hunden, die dem User gehoeren
+
 }
