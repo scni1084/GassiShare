@@ -7,7 +7,7 @@
         android:title="@string/title_login" />
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_map"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
@@ -17,14 +17,8 @@
         android:title="@string/title_profile" />
 
     <item
-        android:id="@+id/navigation_person"
-        android:icon="@drawable/ic_profile_black_24dp"
-        android:title="@string/title_person" />
-
-
-    <item
-        android:id="@+id/navigation_dog"
-        android:icon="@drawable/dog1"
-        android:title="@string/title_dog" />
+        android:id="@+id/navigation_animals"
+        android:icon="@drawable/sprechblase"
+        android:title="@string/title_animals" />
 
 </menu>

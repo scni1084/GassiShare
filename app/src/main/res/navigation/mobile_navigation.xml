@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_login">
 
     <fragment
         android:id="@+id/navigation_login"
@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_login" />
 
      <fragment
-        android:id="@+id/navigation_home"
-        android:name="hska.gassishare.ui.home.HomeFragment"
+        android:id="@+id/navigation_map"
+        android:name="hska.gassishare.ui.map.MapFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -24,14 +24,8 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/navigation_person"
-        android:name="hska.gassishare.ui.person.PersonFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_person" />
-
-    <fragment
-        android:id="@+id/navigation_dog"
-        android:name="hska.gassishare.ui.dog.DogFragment"
-        android:label="@string/title_dog"
-        tools:layout="@layout/fragment_dog" />
+        android:id="@+id/navigation_animals"
+        android:name="hska.gassishare.ui.animals.AnimalsFragment"
+        android:label="@string/title_animals"
+        tools:layout="@layout/fragment_animals" />
 </navigation>
