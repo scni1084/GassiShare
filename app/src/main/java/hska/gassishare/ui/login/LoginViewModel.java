@@ -2,10 +2,11 @@ package hska.gassishare.ui.login;
 
 import android.app.Application;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.Observer;
 
 import java.util.List;
 
@@ -33,6 +34,28 @@ public class LoginViewModel extends AndroidViewModel {
         return aktuellerUser;
     }
 
+    /*
+    public User getAktuellerUser() {
+
+        final User[] zueckgegebenerUser = {null};
+        final Observer<User> userObserver = new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable final User aktuellerUserObserved) {
+
+                if (aktuellerUserObserved == null)
+                    return;
+
+                zueckgegebenerUser[0] = aktuellerUserObserved;
+
+            }
+        };
+
+        return zueckgegebenerUser[1];
+
+    }
+    */
+
+
     public void setAktuellerUser(LiveData<User> aktuellerUser) {
         this.aktuellerUser = aktuellerUser;
     }
@@ -57,6 +80,6 @@ public class LoginViewModel extends AndroidViewModel {
 
     public boolean userExists(String username, String password) {return mUserRepository.userExists(username,password);}
 
-    public LiveData<User> aktuellerUser(String username) {return mUserRepository.getCurrentUser(username);}
+    public LiveData<User> aktuellenUserAusDbHolen(String username) {return mUserRepository.getCurrentUser(username);}
 
 }

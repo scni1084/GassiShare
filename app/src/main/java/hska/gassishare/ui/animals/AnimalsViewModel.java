@@ -1,19 +1,39 @@
 package hska.gassishare.ui.animals;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class AnimalsViewModel extends ViewModel {
+import java.util.List;
 
-    private final MutableLiveData<String> mText;
+import hska.gassishare.data.entity.Dog;
+import hska.gassishare.data.repositories.DogRepository;
 
-    public AnimalsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is animals fragment");
+public class AnimalsViewModel extends AndroidViewModel {
+
+
+    private DogRepository mRepository;
+
+    private final LiveData<List<Dog>> mAllDogs;
+
+    public AnimalsViewModel(Application application) {
+        super(application);
+
+        mRepository = new DogRepository(application);
+        //TODO: nur die des aktuellen Users anzeigen
+        mAllDogs = mRepository.getAllDogs();
+
+
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    LiveData<List<Dog>> getAllDogs() {
+        return mAllDogs;
     }
+
+    void insert(Dog dog) {
+        mRepository.insert(dog);
+    }
+
+
 }

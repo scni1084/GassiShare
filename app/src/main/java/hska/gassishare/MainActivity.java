@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.ActivityMainBinding;
 import hska.gassishare.ui.login.LoginViewModel;
 
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     private LoginViewModel loginViewModel;
+
+    private User aktuellerUser;
 
 
     @Override
@@ -52,5 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setLoginViewModel(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
+    }
+
+    public User getAktuellerUser() {
+        return aktuellerUser;
+    }
+
+    public void setAktuellerUser(User aktuellerUser) {
+        this.aktuellerUser = aktuellerUser;
     }
 }

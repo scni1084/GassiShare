@@ -71,5 +71,6 @@ public class Dog {
     public String getBeschreibung() {
         return this.beschreibung;
     }
+
 }
 

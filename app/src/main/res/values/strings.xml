@@ -13,5 +13,10 @@
     <string name="name_eingeben">Name eingeben...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_animals">Animals…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Animal not saved because it is empty.</string>
+    <string name="add_animal">Add Animal</string>
 
 </resources>

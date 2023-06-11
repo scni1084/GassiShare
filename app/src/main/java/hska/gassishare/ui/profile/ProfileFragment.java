@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.databinding.FragmentProfileBinding;
+import hska.gassishare.ui.animals.AnimalsFragment;
 import hska.gassishare.ui.login.LoginViewModel;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.person.PersonFragment;
@@ -66,14 +67,15 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
 
                 // In anderes Fragment weiterleiten
-                //Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_personFragment);
-
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, PersonFragment.class, null)
                         .setReorderingAllowed(true)
-                        .addToBackStack("LoginToMapTransaction")
+                        .addToBackStack("ProfileToPersonTransaction")
                         .commit();
+
+                System.out.println("Das Profil lautet ");
+                loginViewModel.getAktuellerUser().toString();
 
             }
 
@@ -83,15 +85,22 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
 
                 //TODO: alte Daten löschen, **Login**ViewModel löschen und dann zum Startbildschirm zurueckkehren
+                // gespeicherten User in der MainActivity auf null setzen!
 
             }
         });
 
+
         buttonDogs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //TODO: Zur Hundeseite weiterleiten
-
+                // In anderes Fragment weiterleiten
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("ProfileToAnimalsTransaction")
+                        .commit();
 
             }
 

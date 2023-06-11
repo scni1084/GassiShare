@@ -1,7 +1,6 @@
 package hska.gassishare.ui.login;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
 
@@ -24,12 +22,9 @@ import java.util.List;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
-import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.User;
-import hska.gassishare.data.repositories.UserRepository;
 import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.map.MapFragment;
-import hska.gassishare.ui.person.PersonFragment;
 
 public class LoginFragment extends Fragment {
 
@@ -104,6 +99,8 @@ public class LoginFragment extends Fragment {
             }
         };
 
+
+
         // OnClick fuer Anmelde-Button
         anmeldenButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -117,7 +114,8 @@ public class LoginFragment extends Fragment {
 
                 System.out.println("Der nutzer existiert");
 
-                loginViewModel.setAktuellerUser(loginViewModel.aktuellerUser(username));
+                // Aktuellen Nutzer setzen
+                loginViewModel.setAktuellerUser(loginViewModel.aktuellenUserAusDbHolen(username));
 
                 //TODO: gibt nur LiveData aus
                 System.out.println(loginViewModel.getAktuellerUser());
