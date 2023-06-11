@@ -119,7 +119,21 @@ public class LoginFragment extends Fragment {
                 String passwort = String.valueOf(passwordInput.getText());
 
                 if(!loginViewModel.userExists(username,passwort)) {
-                    //TODO: Fehler anzeigen
+                    //Dialogfenster als Hinweis, dass User nicht existiert
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Benutzer nicht gefunden");
+                    builder.setMessage("Bitte kontrolliere, ob du Username und Passwort korrekt eingegeben hast. " +
+                            "Wenn du neu bist, registriere dich bitte.");
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
+                    dialog.show();
                     return;
                 }
 
@@ -147,9 +161,26 @@ public class LoginFragment extends Fragment {
 
         registrierenButton.setOnClickListener(new View.OnClickListener() {
 
-            //TODO: Validieren / Fehlermeldung anzeigen
             public void onClick(View v) {
-                User u = new User(
+
+                if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
+                    //Dialogfenster als Hinweis, dass Username oder Passwort vergessen
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Registrieren war nicht erfolgreich");
+                    builder.setMessage("Bitte kontrolliere, ob du Username und Passwort eingegeben hast.");
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
+                    dialog.show();
+                }
+
+            User u = new User(
                         UUID.randomUUID(),
                         usernameInput.getText().toString(),
                         "",
@@ -166,7 +197,7 @@ public class LoginFragment extends Fragment {
                 //Dialogfenster als Hinweis, Personendaten auszufuellen
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Profil angelegt");
-                builder.setMessage("Bitte fuelle deine Daten unter Profil > meine Angaben weiter aus.");
+                builder.setMessage("Bitte fülle deine Daten unter Profil > meine Angaben weiter aus.");
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
