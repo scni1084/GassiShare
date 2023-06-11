@@ -139,6 +139,6 @@
             android:id="@+id/button9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Abmelden" />
+            android:text="Speichern" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

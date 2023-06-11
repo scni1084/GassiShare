@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
                         .commit();
 
                 System.out.println("Das Profil lautet ");
-                loginViewModel.getAktuellerUser().toString();
+                //loginViewModel.getAktuellerUser().toString();
 
             }
 

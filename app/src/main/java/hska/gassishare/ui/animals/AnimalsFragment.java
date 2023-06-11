@@ -45,13 +45,10 @@ public class AnimalsFragment extends Fragment {
 
         animalsViewModel = new ViewModelProvider(this).get(AnimalsViewModel.class);
 
-        //RecyclerView recyclerView = getView().findViewById(R.id.recyclerview);
         RecyclerView recyclerView = binding.recyclerview;
         final AnimalsListAdapter adapter = new AnimalsListAdapter(new AnimalsListAdapter.WordDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
 
         /*
         MainActivity mainActivity = (MainActivity) getActivity();
@@ -66,13 +63,6 @@ public class AnimalsFragment extends Fragment {
         });
 
 
-        /*FloatingActionButton fab = getView().findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
-            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-        });
-
-         */
         FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(view -> {
             // In anderes Fragment weiterleiten
@@ -82,22 +72,14 @@ public class AnimalsFragment extends Fragment {
                     .setReorderingAllowed(true)
                     .addToBackStack("AnimalsToDogTransaction")
                     .commit();
-
-
         });
+
+
 
 
         return root;
 
-
     }
 
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-    //TODO: Liste erstellen von den Hunden, die dem User gehoeren
 
 }
