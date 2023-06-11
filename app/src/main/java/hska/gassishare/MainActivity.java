@@ -1,8 +1,11 @@
 package hska.gassishare;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -16,6 +19,7 @@ import java.util.List;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.ActivityMainBinding;
+import hska.gassishare.ui.login.LoginFragment;
 import hska.gassishare.ui.login.LoginViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
         if (!navController.navigateUp()) {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        getSupportFragmentManager().popBackStack();
+
+        return true;
     }
 
 

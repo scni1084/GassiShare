@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
 
@@ -157,6 +158,7 @@ public class LoginFragment extends Fragment {
                         .addToBackStack("LoginToProfileTransaction")
                         .commit();
             }
+
         });
 
         registrierenButton.setOnClickListener(new View.OnClickListener() {

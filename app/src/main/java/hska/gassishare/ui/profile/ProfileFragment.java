@@ -17,6 +17,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
@@ -116,6 +118,19 @@ public class ProfileFragment extends Fragment {
                         .setReorderingAllowed(true)
                         .addToBackStack("ProfileToAnimalsTransaction")
                         .commit();
+            }
+        });
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+
+                while (navBar == null) {
+                    navBar = getActivity().findViewById(R.id.nav_view);
+
+                }
+                navBar.setVisibility(View.VISIBLE);
             }
         });
     }
