@@ -41,9 +41,20 @@ public class UserRepository {
         });
     }
 
-    void update(User user) {
+    public void update(User user) {
         GassishareDatabase.databaseWriteExecutor.execute(() -> {
-            mUserDao.update(user);
+            mUserDao.update(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getNachname(),
+                    user.getVorname(),
+                    user.getPasswort(),
+                    user.getEmail(),
+                    user.getBeschreibung(),
+                    user.getPlz(),
+                    user.getStrasse(),
+                    user.getOrt()
+            );
         });
     }
 

@@ -32,8 +32,6 @@ public class PersonFragment extends Fragment {
 
     private FragmentPersonBinding binding;
 
-    private LoginViewModel loginViewModel;
-
     private EditText editVorname;
 
     private EditText editNachname;
@@ -52,10 +50,15 @@ public class PersonFragment extends Fragment {
 
     private EditText editNewPassword;
 
+    private Button aenderungenSpeichernButton;
+
+    private MainActivity mainActivity;
+
+    private PersonViewModel personViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        PersonViewModel personViewModel =
-                new ViewModelProvider(this).get(PersonViewModel.class);
+        personViewModel = new ViewModelProvider(this).get(PersonViewModel.class);
 
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -68,7 +71,7 @@ public class PersonFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        MainActivity mainActivity = ((MainActivity)getActivity());
+        mainActivity = ((MainActivity)getActivity());
         User aktuellerUser = mainActivity.getAktuellerUser();
 
         editVorname = getView().findViewById(R.id.editVorname);
@@ -81,6 +84,8 @@ public class PersonFragment extends Fragment {
         editOldPassword = getView().findViewById(R.id.editPassOld);
         editNewPassword = getView().findViewById(R.id.editPassNew);
 
+        aenderungenSpeichernButton = getView().findViewById(R.id.buttonSpeichern);
+
 
         editVorname.setText(aktuellerUser.getVorname());
         editNachname.setText(aktuellerUser.getNachname());
@@ -90,6 +95,32 @@ public class PersonFragment extends Fragment {
         editPLZ.setText(aktuellerUser.getPlz().toString());
         editOrt.setText(aktuellerUser.getOrt());
 
+        aenderungenSpeichernButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                // Aenderungen nehmen
+                User geaenderterUser = new User(
+                        aktuellerUser.getId(),
+                        aktuellerUser.getUsername(),
+                        String.valueOf(editNachname.getText()),
+                        String.valueOf(editVorname.getText()),
+                        String.valueOf(editNewPassword.getText()),
+                        String.valueOf(editEmail.getText()),
+                        String.valueOf(editBeschreibung.getText()),
+                        Integer.parseInt(editPLZ.getText().toString()),
+                        String.valueOf(editStrasse.getText()),
+                        String.valueOf(editOrt.getText())
+                );
+
+                // User in Activity updaten
+                mainActivity.setAktuellerUser(geaenderterUser);
+
+                // User in DB updaten
+                personViewModel.UserUpdaten(geaenderterUser);
+
+
+            }
+        });
     }
 
     @Override

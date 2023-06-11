@@ -1,5 +1,6 @@
 package hska.gassishare.data.dao;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -26,15 +27,20 @@ public interface UserDao {
     @Query("DELETE FROM user_table")
     void deleteAll();
 
-    @Update
-    void  update(User user);
+    /**
+     * Updating only title and description
+     * By order id
+     */
+    @Query("UPDATE user_table SET username = :username, nachname= :nachname, vorname= :vorname, passwort= :passwort,  email= :email,beschreibung= :beschreibung,plz= :plz,strasse= :strasse, ort= :ort WHERE id =:id")
+    void update(int id, String username, String nachname, String vorname, String passwort, String email, String beschreibung, Integer plz, String strasse, String ort);
 
     @Query("SELECT * FROM user_table WHERE username = :username")
     User getUser(String username);
 
-    @Query("SELECT * FROM user_table WHERE username = :username AND passwort = :passwort")
-    LiveData<User> LoginPruefen(String username, String passwort);
 
     @Query("SELECT EXISTS (SELECT * FROM user_table WHERE username = :username AND passwort = :password)")
     boolean userExisting(String username, String password);
+
+
+
 }
