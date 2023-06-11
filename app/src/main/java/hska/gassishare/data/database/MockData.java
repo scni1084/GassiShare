@@ -84,6 +84,7 @@ public class MockData {
             3,
             "weiblich",
             "Labrador",
+            100,
             true,
             "Ein lieber Wuffi");
 
@@ -93,6 +94,7 @@ public class MockData {
             5,
             "männlich",
             "Dackel",
+            30,
             false,
             "Ein verspielter Bello");
 
@@ -102,6 +104,7 @@ public class MockData {
             2,
             "weiblich",
             "Golden Retriever",
+            130,
             true,
             "Eine fröhliche Luna");
 
@@ -111,6 +114,7 @@ public class MockData {
             4,
             "männlich",
             "Bulldogge",
+            120,
             true,
             "Ein starker Rocky");
 
@@ -120,6 +124,7 @@ public class MockData {
             6,
             "weiblich",
             "Chihuahua",
+            10,
             false,
             "Eine süße Molly");
 
@@ -129,6 +134,7 @@ public class MockData {
             1,
             "männlich",
             "Deutscher Schäferhund",
+            140,
             true,
             "Ein energiegeladener Max");
 

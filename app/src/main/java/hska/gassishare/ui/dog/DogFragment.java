@@ -102,7 +102,7 @@ public class DogFragment extends Fragment {
 
             editName.setText(mainActivity.getAktuellerDog().getName());
             editRasse.setText(mainActivity.getAktuellerDog().getRasse());
-            editGroesse.setText(mainActivity.getAktuellerDog().getRasse());
+            editGroesse.setText(mainActivity.getAktuellerDog().getGroesse().toString());
             editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
             editAlter.setText(mainActivity.getAktuellerDog().getAlter().toString());
 
@@ -151,6 +151,7 @@ public class DogFragment extends Fragment {
                             //Integer.valueOf(String.valueOf(editAlter.getText())),
                             selectedGender,
                             String.valueOf(editRasse.getText()),
+                            Integer.valueOf(String.valueOf(editGroesse.getText())),
                             kastriert,
                             String.valueOf(editBeschreibung.getText())
                     );
@@ -171,6 +172,7 @@ public class DogFragment extends Fragment {
                             Integer.valueOf(String.valueOf(editAlter.getText())),
                             selectedGender,
                             String.valueOf(editRasse.getText()),
+                            Integer.valueOf(String.valueOf(editGroesse.getText())),
                             kastriert,
                             String.valueOf(editBeschreibung.getText())
                     );

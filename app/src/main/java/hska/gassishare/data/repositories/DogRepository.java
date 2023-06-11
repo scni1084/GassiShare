@@ -53,6 +53,7 @@ public class DogRepository {
                     dog.getAlter(),
                     dog.getGeschlecht(),
                     dog.getRasse(),
+                    dog.getGroesse(),
                     dog.getKastriert(),
                     dog.getBeschreibung()
             );

@@ -28,14 +28,17 @@ public class Dog {
 
     private String beschreibung;
 
+    private Integer groesse;
 
-    public Dog(int id, @NonNull int user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Boolean kastriert, String beschreibung) {
+
+    public Dog(int id, @NonNull int user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
         this.alter = alter;
         this.geschlecht = geschlecht;
         this.rasse = rasse;
+        this.groesse = groesse;
         this.kastriert = kastriert;
         this.beschreibung = beschreibung;
     }
@@ -73,5 +76,8 @@ public class Dog {
         return this.beschreibung;
     }
 
+    public Integer getGroesse() {
+        return groesse;
+    }
 }
 
