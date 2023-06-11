@@ -1,5 +1,6 @@
 package hska.gassishare.ui.person;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import hska.gassishare.databinding.FragmentPersonBinding;
 import hska.gassishare.ui.login.LoginViewModel;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.person.PersonViewModel;
+import hska.gassishare.ui.profile.ProfileFragment;
 
 public class PersonFragment extends Fragment {
 
@@ -69,6 +71,19 @@ public class PersonFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+
+                while (navBar == null) {
+                    navBar = getActivity().findViewById(R.id.nav_view);
+
+                }
+                navBar.setVisibility(View.GONE);
+            }
+        });
 
 
         mainActivity = ((MainActivity)getActivity());
@@ -131,6 +146,19 @@ public class PersonFragment extends Fragment {
                 // User in DB updaten
                 personViewModel.UserUpdaten(geaenderterUser);
 
+
+                //Navigation wieder sichtbar machen
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                navBar.setVisibility(View.VISIBLE);
+
+
+                // In anderes Fragment weiterleiten
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("PersonToProfileFragmentTransaction")
+                        .commit();
 
             }
         });
