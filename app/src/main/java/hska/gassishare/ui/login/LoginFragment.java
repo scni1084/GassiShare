@@ -116,6 +116,7 @@ public class LoginFragment extends Fragment {
                 String passwort = String.valueOf(passwordInput.getText());
 
                 if(!loginViewModel.userExists(username,passwort)) {
+                    //TODO: Fehler anzeigen
                     return;
                 }
 
@@ -141,6 +142,8 @@ public class LoginFragment extends Fragment {
         });
 
         registrierenButton.setOnClickListener(new View.OnClickListener() {
+
+            //TODO: Validieren / Fehlermeldung anzeigen
             public void onClick(View v) {
                 User u = new User(
                         1000,

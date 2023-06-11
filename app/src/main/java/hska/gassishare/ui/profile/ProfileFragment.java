@@ -80,8 +80,6 @@ public class ProfileFragment extends Fragment {
                 ((MainActivity) getActivity()).setAktuellerUser(null);
 
 
-                //TODO: Nach erneutem Login ist Profil nicht mehr verfuegbar und wird von Karte verdeckt
-
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()

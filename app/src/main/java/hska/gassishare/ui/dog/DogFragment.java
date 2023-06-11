@@ -141,10 +141,10 @@ public class DogFragment extends Fragment {
 
         }
 
-
-
         dogSpeichern.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //TODO: Validieren / Fehlermeldung anzeigen
 
                 // Geschlecht setzen
                 int selectedRadioButtonId = groupGeschlecht.getCheckedRadioButtonId();
@@ -173,6 +173,7 @@ public class DogFragment extends Fragment {
                 if (mainActivity.getAktuellerDog() == null) {
 
                     Dog doggo = new Dog(
+                            //TODO: ID zu anpassen ?
                             new Random().nextInt(Integer.MAX_VALUE),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
@@ -194,7 +195,6 @@ public class DogFragment extends Fragment {
 
                 }
                 else {
-                    //TODO: ID zu anpassen ?
                     Dog doggo = new Dog(
                             mainActivity.getAktuellerDog().getId(),
                             mainActivity.getAktuellerUser().getId(),
