@@ -22,6 +22,7 @@ import java.util.List;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
+import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.map.MapFragment;
@@ -111,7 +112,13 @@ public class LoginFragment extends Fragment {
 
                 System.out.println("Der nutzer existiert");
 
-                ((MainActivity)getActivity()).setAktuellerUser(loginViewModel.getUser(username));
+                MainActivity mainActivity = ((MainActivity)getActivity());
+
+                mainActivity.setAktuellerUser(loginViewModel.getUser(username));
+
+                int userId = mainActivity.getAktuellerUser().getId();
+
+                ((MainActivity)getActivity()).setAktuelleDoggosListe(loginViewModel.getDogsForUser(userId));
 
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);

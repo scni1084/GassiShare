@@ -11,6 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
+import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.ActivityMainBinding;
 import hska.gassishare.ui.login.LoginViewModel;
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private User aktuellerUser;
+
+    private List<Dog> aktuelleDoggosListe;
 
 
     @Override
@@ -47,5 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setAktuellerUser(User aktuellerUser) {
         this.aktuellerUser = aktuellerUser;
+    }
+
+    public List<Dog> getAktuelleDoggosListe() {
+        return aktuelleDoggosListe;
+    }
+
+    public void setAktuelleDoggosListe(List<Dog> aktuelleDoggosListe) {
+        this.aktuelleDoggosListe = aktuelleDoggosListe;
     }
 }

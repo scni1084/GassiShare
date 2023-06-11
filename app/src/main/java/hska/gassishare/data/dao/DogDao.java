@@ -24,4 +24,7 @@ public interface DogDao {
 
     @Query("DELETE FROM dog_table")
     void deleteAll();
+
+    @Query("SELECT * FROM dog_table WHERE user_id = :user_id")
+    List<Dog> getDogsForUser(int user_id);
 }

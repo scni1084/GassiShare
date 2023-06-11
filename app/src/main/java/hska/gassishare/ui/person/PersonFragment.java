@@ -35,6 +35,7 @@ public class PersonFragment extends Fragment {
     private LoginViewModel loginViewModel;
 
     private EditText editVorname;
+//
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +47,6 @@ public class PersonFragment extends Fragment {
 
         return root;
     }
-    //TODO: Daten in Behaelter kriegen, in LoginView steht leider nur LiveData
 
     @Override
     public void onDestroyView() {

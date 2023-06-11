@@ -38,4 +38,8 @@ public class DogRepository {
             mDogDAO.insert(dog);
         });
     }
+
+    public List<Dog> getDogsForUser(int id) {
+        return mDogDAO.getDogsForUser(id);
+    }
 }
