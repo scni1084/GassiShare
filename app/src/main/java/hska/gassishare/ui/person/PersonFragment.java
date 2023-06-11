@@ -99,12 +99,25 @@ public class PersonFragment extends Fragment {
             public void onClick(View v) {
 
                 // Aenderungen nehmen
+
+                String savedPW = aktuellerUser.getPasswort();
+
+                if(String.valueOf(editNewPassword.getText()) == "Neues Passwort" ||
+                        String.valueOf(editNewPassword.getText()) == "" ||
+                        String.valueOf(editOldPassword) != aktuellerUser.getPasswort()
+                ) {
+                }
+                else {
+                    savedPW = String.valueOf(editNewPassword.getText());
+                }
+
+
                 User geaenderterUser = new User(
                         aktuellerUser.getId(),
                         aktuellerUser.getUsername(),
                         String.valueOf(editNachname.getText()),
                         String.valueOf(editVorname.getText()),
-                        String.valueOf(editNewPassword.getText()),
+                        savedPW,
                         String.valueOf(editEmail.getText()),
                         String.valueOf(editBeschreibung.getText()),
                         Integer.parseInt(editPLZ.getText().toString()),

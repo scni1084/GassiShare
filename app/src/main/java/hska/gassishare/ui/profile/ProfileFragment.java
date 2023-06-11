@@ -66,9 +66,6 @@ public class ProfileFragment extends Fragment {
                         .addToBackStack("ProfileToPersonTransaction")
                         .commit();
 
-                System.out.println("Das Profil lautet ");
-                //loginViewModel.getAktuellerUser().toString();
-
             }
 
         });
