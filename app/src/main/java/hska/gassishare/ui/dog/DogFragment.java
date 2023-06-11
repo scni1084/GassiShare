@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
@@ -67,10 +69,15 @@ public class DogFragment extends Fragment {
 
         doggoList = mainActivity.getAktuelleDoggosListe();
 
+        // Find the ImageView
+        ImageView imageView = root.findViewById(R.id.imageView2);
+
+        // Set the image resource
+        imageView.setImageResource(R.drawable.dog1);
+
         return root;
     }
 
-    //TODO: Einzelansicht fuer den Hund wie bei Person
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -107,9 +114,31 @@ public class DogFragment extends Fragment {
             editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
             editAlter.setText(mainActivity.getAktuellerDog().getAlter().toString());
 
-            //TODO: Geschlecht und kastriert setzen
-            //groupGeschlecht.setText(mainActivity.getAktuellerDog().getName());
-            //groupKastriert.setText(mainActivity.getAktuellerDog().getName());
+            // Set the value for groupGeschlecht
+            String geschlecht = mainActivity.getAktuellerDog().getGeschlecht(); // Replace with the actual method to get the value
+            RadioButton radioButtonGeschlecht;
+
+            if (geschlecht.equals("männlich")) {
+                radioButtonGeschlecht = view.findViewById(R.id.radioGeschlecht1);
+                radioButtonGeschlecht.setChecked(true);
+            } else if (geschlecht.equals("weiblich")) {
+                radioButtonGeschlecht = view.findViewById(R.id.radioGeschlecht2);
+                radioButtonGeschlecht.setChecked(true);
+            }
+
+
+            // Set the value for groupKastriert
+            boolean isKastriert = mainActivity.getAktuellerDog().getKastriert();
+            RadioButton radioButtonKastriert;
+
+            if (isKastriert == true) {
+                radioButtonKastriert = view.findViewById(R.id.radioKastiert1);
+                radioButtonKastriert.setChecked(true);
+            } else if (isKastriert == false) {
+                radioButtonKastriert = view.findViewById(R.id.radioKastiert2);
+                radioButtonKastriert.setChecked(true);
+            }
+
         }
 
 

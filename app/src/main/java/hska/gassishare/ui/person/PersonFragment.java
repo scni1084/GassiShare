@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,6 +56,12 @@ public class PersonFragment extends Fragment {
 
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // Find the ImageView
+        ImageView imageView = root.findViewById(R.id.imageView2);
+
+        // Set the image resource
+        imageView.setImageResource(R.drawable.avatar);
 
 
         return root;
