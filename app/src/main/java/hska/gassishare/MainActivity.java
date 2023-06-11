@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Dog> aktuelleDoggosListe;
 
-    private Dog aktuellerDog;
+    private Dog aktuellerDog = null;
 
 
     @Override

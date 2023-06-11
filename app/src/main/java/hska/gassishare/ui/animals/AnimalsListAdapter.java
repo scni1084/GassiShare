@@ -37,5 +37,7 @@ public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
             return oldItem.getName().equals(newItem.getName());
         }
     }
+
+
 }
 

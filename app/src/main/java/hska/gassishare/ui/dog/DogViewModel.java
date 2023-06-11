@@ -33,5 +33,5 @@ public class DogViewModel extends AndroidViewModel {
         mDogRepository.insert(dog);
     }
 
-    public void doggoAendern(Dog dog) {}
+    public void doggoAendern(Dog dog) {mDogRepository.updateDog(dog);}
 }

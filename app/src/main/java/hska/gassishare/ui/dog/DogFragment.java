@@ -49,8 +49,9 @@ public class DogFragment extends Fragment {
 
     private Button dogSpeichern;
 
-
     private DogViewModel dogViewModel;
+
+    private List<Dog> doggoList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +63,8 @@ public class DogFragment extends Fragment {
         mainActivity = (MainActivity)getActivity();
 
         aktuellerDoggo = mainActivity.getAktuellerDog();
+
+        doggoList = mainActivity.getAktuelleDoggosListe();
 
         return root;
     }
@@ -94,7 +97,19 @@ public class DogFragment extends Fragment {
 
         dogSpeichern = getView().findViewById(R.id.dogSpeichern);
 
-        //TODO: Werte in TextViews setzen, falls Dog existiert
+        //Werte in TextViews setzen, falls Dog existiert
+        if(mainActivity.getAktuellerDog() != null) {
+
+            editName.setText(mainActivity.getAktuellerDog().getName());
+            editRasse.setText(mainActivity.getAktuellerDog().getRasse());
+            editGroesse.setText(mainActivity.getAktuellerDog().getRasse());
+            editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
+            editAlter.setText(mainActivity.getAktuellerDog().getAlter());
+
+            //TODO: Geschlecht und kastriert setzen
+            //groupGeschlecht.setText(mainActivity.getAktuellerDog().getName());
+            //groupKastriert.setText(mainActivity.getAktuellerDog().getName());
+        }
 
 
 
@@ -128,6 +143,7 @@ public class DogFragment extends Fragment {
                 if (mainActivity.getAktuellerDog() == null) {
 
                     Dog doggo = new Dog(
+                            //TODO: AutoIncrement-IDs?
                             300,
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
@@ -142,15 +158,14 @@ public class DogFragment extends Fragment {
                     dogViewModel.doggoAnlegen(doggo);
 
 
-                    List<Dog> doggoList = mainActivity.getAktuelleDoggosListe();
                     doggoList.add(doggo);
                     mainActivity.setAktuelleDoggosListe(doggoList);
 
                 }
                 else {
-                    //TODO: Dog updaten
+                    //TODO: Dog updaten prüfen, ID anpassen
                     Dog doggo = new Dog(
-                            300,
+                            mainActivity.getAktuellerDog().getId(),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
                             Integer.valueOf(String.valueOf(editAlter.getText())),
@@ -161,7 +176,9 @@ public class DogFragment extends Fragment {
                     );
 
 
-                    dogViewModel.doggoAnlegen(doggo);
+                    dogViewModel.doggoAendern(doggo);
+                    doggoList.remove(aktuellerDoggo);
+                    doggoList.add(doggo);
 
                 }
 

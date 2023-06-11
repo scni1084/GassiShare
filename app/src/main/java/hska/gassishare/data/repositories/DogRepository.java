@@ -9,6 +9,7 @@ import java.util.List;
 import hska.gassishare.data.dao.DogDao;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.Dog;
+import hska.gassishare.data.entity.User;
 
 public class DogRepository {
 
@@ -41,5 +42,20 @@ public class DogRepository {
 
     public List<Dog> getDogsForUser(int id) {
         return mDogDAO.getDogsForUser(id);
+    }
+
+    public void updateDog(Dog dog) {
+        GassishareDatabase.databaseWriteExecutor.execute(() -> {
+            mDogDAO.updateDog(
+                    dog.getId(),
+                    dog.getUser_id(),
+                    dog.getName(),
+                    dog.getAlter(),
+                    dog.getGeschlecht(),
+                    dog.getRasse(),
+                    dog.getKastriert(),
+                    dog.getBeschreibung()
+            );
+        });
     }
 }
