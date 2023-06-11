@@ -215,7 +215,6 @@ public class DogFragment extends Fragment {
                             //Integer.valueOf(String.valueOf(editAlter.getText())),
                             selectedGender,
                             String.valueOf(editRasse.getText()),
-                            //TODO: Fehlerbehandlung fuer falls Groesse String ist
                             Integer.valueOf(String.valueOf(editGroesse.getText())),
                             kastriert,
                             String.valueOf(editBeschreibung.getText())

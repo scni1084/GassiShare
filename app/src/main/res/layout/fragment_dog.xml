@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="Alter" />
+            android:hint="Alter in Jahren" />
 
         <EditText
             android:id="@+id/editRasse"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="Größe" />
+            android:hint="Größe in cm" />
 
         <RadioGroup
             android:id="@+id/groupGeschlecht"
