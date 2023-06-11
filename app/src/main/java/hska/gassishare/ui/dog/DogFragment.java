@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+import java.util.Random;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
@@ -143,14 +144,14 @@ public class DogFragment extends Fragment {
                 if (mainActivity.getAktuellerDog() == null) {
 
                     Dog doggo = new Dog(
-                            //TODO: AutoIncrement-IDs?
-                            300,
+                            new Random().nextInt(Integer.MAX_VALUE),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
                             0,
                             //Integer.valueOf(String.valueOf(editAlter.getText())),
                             selectedGender,
                             String.valueOf(editRasse.getText()),
+                            //TODO: Fehlerbehandlung fuer falls Groesse String ist
                             Integer.valueOf(String.valueOf(editGroesse.getText())),
                             kastriert,
                             String.valueOf(editBeschreibung.getText())
@@ -164,7 +165,7 @@ public class DogFragment extends Fragment {
 
                 }
                 else {
-                    //TODO: Dog updaten prüfen, ID anpassen
+                    //TODO: ID zu anpassen ?
                     Dog doggo = new Dog(
                             mainActivity.getAktuellerDog().getId(),
                             mainActivity.getAktuellerUser().getId(),

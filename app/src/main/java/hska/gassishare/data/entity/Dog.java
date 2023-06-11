@@ -11,7 +11,6 @@ public class Dog {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    //TODO: FK-Beziehung herstellen so korrekt?
     @NonNull
     private int user_id;
 

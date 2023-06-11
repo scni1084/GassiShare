@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,8 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:cropToPadding="false"
-            tools:src="@drawable/dog1"
-            />
+            tools:src="@drawable/dog1" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +36,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" >
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <EditText
             android:id="@+id/editName"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:hint="Name" />
 
         <EditText
             android:id="@+id/editAlter"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="Alter" />
+            android:hint="Alter" />
 
         <EditText
             android:id="@+id/editRasse"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="Rasse" />
+            android:hint="Rasse" />
 
         <EditText
             android:id="@+id/editGroesse"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="Größe" />
+            android:hint="Größe" />
 
         <RadioGroup
             android:id="@+id/groupGeschlecht"
@@ -102,7 +102,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <TextView
                 android:id="@+id/textKastriert"
                 android:layout_width="100dp"
@@ -130,7 +129,7 @@
             android:layout_height="84dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Beschreibung" />
+            android:hint="Beschreibung" />
 
         <Button
             android:id="@+id/dogSpeichern"
