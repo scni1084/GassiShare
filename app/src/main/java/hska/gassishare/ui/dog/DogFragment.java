@@ -1,5 +1,7 @@
 package hska.gassishare.ui.dog;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -145,8 +147,6 @@ public class DogFragment extends Fragment {
         dogSpeichern.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //TODO: Validieren / Fehlermeldung anzeigen
-
                 // Geschlecht setzen
                 int selectedRadioButtonId = groupGeschlecht.getCheckedRadioButtonId();
 
@@ -168,6 +168,40 @@ public class DogFragment extends Fragment {
                 } else if (selectedRadioButtonIdKastriert == R.id.radioGeschlecht2) {
                     kastriert = false;
                 }
+
+                int groesse = 0;
+                try {
+                    groesse = Integer.parseInt(editGroesse.getText().toString());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
+                if (editName.getText().toString().equals("") ||
+                        editRasse.getText().toString().equals("") ||
+                        editGroesse.getText().toString().equals("") ||
+                        editBeschreibung.getText().toString().equals("") ||
+                        editAlter.getText().toString().equals("") ||
+                        selectedGender.equals("") ||
+                        groesse == 0
+                ) {
+                    //Dialogfenster als Hinweis, dass Felder vergessen wurden auszufuellen
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Na hör mal");
+                    builder.setMessage("Bitte kontrolliere, ob du alle Felder korrekt ausgefüllt hast.");
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
+                    dialog.show();
+                    return;
+
+                }
+
 
 
                 // Dog in DB updaten oder erstellen
