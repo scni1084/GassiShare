@@ -28,8 +28,6 @@ public class AnimalsFragment extends Fragment {
 
     private FragmentAnimalsBinding binding;
 
-    //private LoginViewModel loginViewModel;
-
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
@@ -50,17 +48,8 @@ public class AnimalsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        /*
-        MainActivity mainActivity = (MainActivity) getActivity();
-        loginViewModel = mainActivity.getLoginViewModel();
-         */
 
-
-
-        animalsViewModel.getAllDogs().observe(getViewLifecycleOwner(), dogs -> {
-            // Update the cached copy of the words in the adapter.
-            adapter.submitList(dogs);
-        });
+        adapter.submitList(((MainActivity)getActivity()).getAktuelleDoggosListe());
 
 
         FloatingActionButton fab = binding.fab;

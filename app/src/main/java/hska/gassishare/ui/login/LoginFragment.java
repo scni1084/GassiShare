@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment {
 
                 int userId = mainActivity.getAktuellerUser().getId();
 
-                ((MainActivity)getActivity()).setAktuelleDoggosListe(loginViewModel.getDogsForUser(userId));
+                mainActivity.setAktuelleDoggosListe(loginViewModel.getDogsForUser(userId));
 
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);

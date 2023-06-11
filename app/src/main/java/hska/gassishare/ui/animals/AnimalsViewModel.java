@@ -24,7 +24,6 @@ public class AnimalsViewModel extends AndroidViewModel {
     public AnimalsViewModel(Application application) {
         super(application);
 
-
         mRepository = new DogRepository(application);
         //TODO: nur die des aktuellen Users anzeigen
         mAllDogs = mRepository.getAllDogs();
