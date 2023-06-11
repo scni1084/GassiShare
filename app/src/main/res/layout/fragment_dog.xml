@@ -47,6 +47,14 @@
             android:text="Name" />
 
         <EditText
+            android:id="@+id/editAlter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Alter" />
+
+        <EditText
             android:id="@+id/editRasse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +63,7 @@
             android:text="Rasse" />
 
         <EditText
-            android:id="@+id/editGröße"
+            android:id="@+id/editGroesse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -117,12 +125,18 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/editBeschreibung"
+            android:id="@+id/editHundeBeschreibung"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="84dp"
             android:ems="10"
             android:inputType="text"
             android:text="Beschreibung" />
+
+        <Button
+            android:id="@+id/dogSpeichern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Speichern" />
     </LinearLayout>
 
     <LinearLayout
@@ -135,10 +149,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Speichern" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

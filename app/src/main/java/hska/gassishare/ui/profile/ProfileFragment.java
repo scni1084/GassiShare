@@ -21,6 +21,7 @@ import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentProfileBinding;
 import hska.gassishare.ui.animals.AnimalsFragment;
+import hska.gassishare.ui.login.LoginFragment;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.person.PersonFragment;
 import hska.gassishare.ui.person.PersonViewModel;
@@ -34,6 +35,9 @@ public class ProfileFragment extends Fragment {
     private Button buttonDogs;
 
     private Button buttonAbmelden;
+
+
+    private MainActivity mainActivity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -73,8 +77,20 @@ public class ProfileFragment extends Fragment {
         buttonAbmelden.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //TODO: alte Daten löschen, **Login**ViewModel löschen und dann zum Startbildschirm zurueckkehren
-                // gespeicherten User in der MainActivity auf null setzen!
+                ((MainActivity) getActivity()).setAktuellerUser(null);
+
+
+                //TODO: Nach erneutem Login ist Profil nicht mehr verfuegbar und wird von Karte verdeckt
+
+                // In anderes Fragment weiterleiten
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment_activity_main, LoginFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("ProfileToLoginTranscation")
+                        .commit();
+
+
 
             }
         });

@@ -1,33 +1,24 @@
 package hska.gassishare.ui.person;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
-
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
-import hska.gassishare.databinding.FragmentMapBinding;
 import hska.gassishare.databinding.FragmentPersonBinding;
-import hska.gassishare.ui.login.LoginViewModel;
-import hska.gassishare.ui.map.MapFragment;
-import hska.gassishare.ui.person.PersonViewModel;
 import hska.gassishare.ui.profile.ProfileFragment;
 
 public class PersonFragment extends Fragment {
@@ -92,7 +83,7 @@ public class PersonFragment extends Fragment {
         editVorname = getView().findViewById(R.id.editVorname);
         editNachname = getView().findViewById(R.id.editNachname);
         editEmail = getView().findViewById(R.id.editEmail);
-        editBeschreibung = getView().findViewById(R.id.editBeschreibung);
+        editBeschreibung = getView().findViewById(R.id.editHundeBeschreibung);
         editStrasse = getView().findViewById(R.id.editStrasse);
         editPLZ = getView().findViewById(R.id.editPLZ);
         editOrt = getView().findViewById(R.id.editOrt);

@@ -26,6 +26,7 @@ import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.map.MapFragment;
+import hska.gassishare.ui.profile.ProfileFragment;
 
 public class LoginFragment extends Fragment {
 
@@ -126,9 +127,9 @@ public class LoginFragment extends Fragment {
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, MapFragment.class, null)
+                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
                         .setReorderingAllowed(true)
-                        .addToBackStack("LoginToMapTransaction")
+                        .addToBackStack("LoginToProfileTransaction")
                         .commit();
             }
         });

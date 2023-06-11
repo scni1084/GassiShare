@@ -63,7 +63,7 @@ public class AnimalsFragment extends Fragment {
                     .commit();
         });
 
-
+        //TODO: OnClick fuer auf einen spezifischen Hund klicken
 
 
         return root;

@@ -44,7 +44,7 @@
             android:text="E-Mail" />
 
         <EditText
-            android:id="@+id/editBeschreibung"
+            android:id="@+id/editHundeBeschreibung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

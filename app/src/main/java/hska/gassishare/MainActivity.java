@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Dog> aktuelleDoggosListe;
 
+    private Dog aktuellerDog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setAktuelleDoggosListe(List<Dog> aktuelleDoggosListe) {
         this.aktuelleDoggosListe = aktuelleDoggosListe;
+    }
+
+    public Dog getAktuellerDog() {
+        return aktuellerDog;
+    }
+
+    public void setAktuellerDog(Dog aktuellerDog) {
+        this.aktuellerDog = aktuellerDog;
     }
 }
