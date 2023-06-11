@@ -108,8 +108,7 @@ public class PersonFragment extends Fragment {
 
                 String savedPW = aktuellerUser.getPasswort();
 
-                if(String.valueOf(editNewPassword.getText()) == "Neues Passwort" ||
-                        String.valueOf(editNewPassword.getText()) == "" ||
+                if(String.valueOf(editNewPassword.getText()) == "" ||
                         String.valueOf(editOldPassword) != aktuellerUser.getPasswort()
                 ) {
                 }

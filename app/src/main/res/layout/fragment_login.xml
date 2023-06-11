@@ -106,14 +106,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/RegistrierenButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="Registrieren"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="157dp"
-            tools:layout_editor_absoluteY="660dp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

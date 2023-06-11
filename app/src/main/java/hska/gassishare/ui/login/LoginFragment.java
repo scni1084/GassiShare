@@ -28,6 +28,7 @@ import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.profile.ProfileFragment;
 
+
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
@@ -42,6 +43,10 @@ public class LoginFragment extends Fragment {
     private EditText passwordInput;
 
     private Button anmeldenButton;
+
+    private Button registrierenButton;
+
+    private MainActivity mainActivity;
 
     // neu
     public LoginFragment() {
@@ -69,10 +74,13 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mainActivity = ((MainActivity)getActivity());
+
         textView3 = getView().findViewById(R.id.textView3);
         usernameInput = getView().findViewById(R.id.UsernameInput);
         passwordInput = getView().findViewById(R.id.PasswordInput);
         anmeldenButton = getView().findViewById(R.id.AnmeldenButton);
+        registrierenButton =getView().findViewById(R.id.RegistrierenButton);
 
         // Create the observer which updates the UI.
         final Observer<List<User>> usersObserver = new Observer<List<User>>() {
@@ -113,8 +121,6 @@ public class LoginFragment extends Fragment {
 
                 System.out.println("Der nutzer existiert");
 
-                MainActivity mainActivity = ((MainActivity)getActivity());
-
                 mainActivity.setAktuellerUser(loginViewModel.getUser(username));
 
                 int userId = mainActivity.getAktuellerUser().getId();
@@ -134,6 +140,37 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        registrierenButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                User u = new User(
+                        1000,
+                        usernameInput.getText().toString(),
+                        "",
+                        "",
+                        passwordInput.getText().toString(),
+                        "",
+                        "",
+                        0,
+                        "",
+                        ""
+
+                );
+
+                loginViewModel.createUser(u);
+
+                mainActivity.setAktuellerUser(u);
+
+                // In anderes Fragment weiterleiten
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("LoginToProfileTransaction")
+                        .commit();
+
+
+            }});
+
         // hide navbar on login
         view.post(new Runnable() {
             @Override
@@ -144,7 +181,7 @@ public class LoginFragment extends Fragment {
                     navBar = getActivity().findViewById(R.id.nav_view);
 
                 }
-                    navBar.setVisibility(View.GONE);
+                navBar.setVisibility(View.GONE);
             }
         });
     }

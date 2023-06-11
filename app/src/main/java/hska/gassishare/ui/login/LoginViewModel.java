@@ -63,4 +63,8 @@ public class LoginViewModel extends AndroidViewModel {
     public List<Dog> getDogsForUser(int id) {
         return mDogRepository.getDogsForUser(id);
     }
+
+    public void createUser(User u) {
+        mUserRepository.insert(u);
+    }
 }
