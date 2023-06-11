@@ -35,7 +35,22 @@ public class PersonFragment extends Fragment {
     private LoginViewModel loginViewModel;
 
     private EditText editVorname;
-//
+
+    private EditText editNachname;
+
+    private EditText editEmail;
+
+    private EditText editBeschreibung;
+
+    private EditText editStrasse;
+
+    private EditText editPLZ;
+
+    private EditText editOrt;
+
+    private EditText editOldPassword;
+
+    private EditText editNewPassword;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +60,36 @@ public class PersonFragment extends Fragment {
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         return root;
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        MainActivity mainActivity = ((MainActivity)getActivity());
+        User aktuellerUser = mainActivity.getAktuellerUser();
+
+        editVorname = getView().findViewById(R.id.editVorname);
+        editNachname = getView().findViewById(R.id.editNachname);
+        editEmail = getView().findViewById(R.id.editEmail);
+        editBeschreibung = getView().findViewById(R.id.editBeschreibung);
+        editStrasse = getView().findViewById(R.id.editStrasse);
+        editPLZ = getView().findViewById(R.id.editPLZ);
+        editOrt = getView().findViewById(R.id.editOrt);
+        editOldPassword = getView().findViewById(R.id.editPassOld);
+        editNewPassword = getView().findViewById(R.id.editPassNew);
+
+
+        editVorname.setText(aktuellerUser.getVorname());
+        editNachname.setText(aktuellerUser.getNachname());
+        editEmail.setText(aktuellerUser.getEmail());
+        editBeschreibung.setText(aktuellerUser.getBeschreibung());
+        editStrasse.setText(aktuellerUser.getStrasse());
+        editPLZ.setText(aktuellerUser.getPlz().toString());
+        editOrt.setText(aktuellerUser.getOrt());
+
     }
 
     @Override
