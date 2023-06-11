@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,6 +53,18 @@ public class ProfileFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // This callback will only be called when OnBackPressedDispatcher#onBackPressed() is called.
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+                new OnBackPressedCallback(true /* enabled by default */) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        // Handle the back button event
+                        // For example, navigate to another fragment
+                        NavController navController = Navigation.findNavController(view);
+                        navController.navigate(R.id.navigation_profile);
+                    }
+                });
 
         buttonPerson = getView().findViewById(R.id.buttonPerson);
 

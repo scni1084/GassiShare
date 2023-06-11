@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
@@ -124,7 +125,7 @@ public class LoginFragment extends Fragment {
 
                 mainActivity.setAktuellerUser(loginViewModel.getUser(username));
 
-                int userId = mainActivity.getAktuellerUser().getId();
+                UUID userId = mainActivity.getAktuellerUser().getId();
 
                 mainActivity.setAktuelleDoggosListe(loginViewModel.getDogsForUser(userId));
 
@@ -146,7 +147,7 @@ public class LoginFragment extends Fragment {
             //TODO: Validieren / Fehlermeldung anzeigen
             public void onClick(View v) {
                 User u = new User(
-                        1000,
+                        UUID.randomUUID(),
                         usernameInput.getText().toString(),
                         "",
                         "",

@@ -5,12 +5,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(tableName = "user_table")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private UUID id;
 
     @NonNull
     private String username;
@@ -40,7 +42,7 @@ public class User {
     private String ort;
 
 
-    public User(int id, @NonNull String username, @NonNull String nachname, @NonNull String vorname, @NonNull String passwort, @NonNull String email, String beschreibung, @NonNull Integer plz, @NonNull String strasse, @NonNull String ort) {
+    public User(UUID id, @NonNull String username, @NonNull String nachname, @NonNull String vorname, @NonNull String passwort, @NonNull String email, String beschreibung, @NonNull Integer plz, @NonNull String strasse, @NonNull String ort) {
         this.id = id;
         this.username = username;
         this.nachname = nachname;
@@ -53,7 +55,7 @@ public class User {
         this.ort = ort;
     }
 
-    public int getId() {
+    public UUID getId() {
         return this.id;
     }
 

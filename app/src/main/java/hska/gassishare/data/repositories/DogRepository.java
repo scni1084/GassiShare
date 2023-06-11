@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.data.dao.DogDao;
 import hska.gassishare.data.database.GassishareDatabase;
@@ -40,7 +41,7 @@ public class DogRepository {
         });
     }
 
-    public List<Dog> getDogsForUser(int id) {
+    public List<Dog> getDogsForUser(UUID id) {
         return mDogDAO.getDogsForUser(id);
     }
 

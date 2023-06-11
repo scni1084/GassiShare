@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
@@ -173,8 +174,7 @@ public class DogFragment extends Fragment {
                 if (mainActivity.getAktuellerDog() == null) {
 
                     Dog doggo = new Dog(
-                            //TODO: ID zu anpassen ?
-                            new Random().nextInt(Integer.MAX_VALUE),
+                            UUID.randomUUID(),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
                             0,

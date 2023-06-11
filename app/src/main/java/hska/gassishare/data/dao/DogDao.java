@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.data.entity.Dog;
 
@@ -27,8 +28,8 @@ public interface DogDao {
     void deleteAll();
 
     @Query("SELECT * FROM dog_table WHERE user_id = :user_id")
-    List<Dog> getDogsForUser(int user_id);
+    List<Dog> getDogsForUser(UUID user_id);
 
     @Query("UPDATE dog_table SET name= :name, `alter`= :alter, geschlecht= :geschlecht,  rasse= :rasse, groesse= :groesse, kastriert= :kastriert, beschreibung= :beschreibung WHERE id =:id AND user_id= :user_id")
-    void updateDog(int id, int user_id, String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung);
+    void updateDog(UUID id, UUID user_id, String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung);
 }

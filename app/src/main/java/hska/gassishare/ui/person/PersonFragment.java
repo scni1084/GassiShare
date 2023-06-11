@@ -70,6 +70,7 @@ public class PersonFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         view.post(new Runnable() {
             @Override
             public void run() {

@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.data.entity.User;
 
@@ -28,7 +29,7 @@ public interface UserDao {
     void deleteAll();
 
     @Query("UPDATE user_table SET username = :username, nachname= :nachname, vorname= :vorname, passwort= :passwort,  email= :email,beschreibung= :beschreibung,plz= :plz,strasse= :strasse, ort= :ort WHERE id =:id")
-    void update(int id, String username, String nachname, String vorname, String passwort, String email, String beschreibung, Integer plz, String strasse, String ort);
+    void update(UUID id, String username, String nachname, String vorname, String passwort, String email, String beschreibung, Integer plz, String strasse, String ort);
 
     @Query("SELECT * FROM user_table WHERE username = :username")
     User getUser(String username);

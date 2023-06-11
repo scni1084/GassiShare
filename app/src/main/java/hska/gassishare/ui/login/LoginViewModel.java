@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
@@ -60,7 +61,7 @@ public class LoginViewModel extends AndroidViewModel {
         return mUserRepository.getUser(username);
     }
 
-    public List<Dog> getDogsForUser(int id) {
+    public List<Dog> getDogsForUser(UUID id) {
         return mDogRepository.getDogsForUser(id);
     }
 

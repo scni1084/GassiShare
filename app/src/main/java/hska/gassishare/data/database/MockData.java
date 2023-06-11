@@ -2,15 +2,17 @@ package hska.gassishare.data.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 
 public class MockData {
 
-    //Mockdaten fuer User
+    // Mockdaten für User
 
-    User user1 = new User(100,
+    UUID user1UUID = UUID.fromString("e9f52a8a-1c18-4a20-9c7d-4c4a15708e8a");
+    User user1 = new User(user1UUID,
             "herrchen10",
             "Mustermann",
             "Max",
@@ -21,7 +23,8 @@ public class MockData {
             "Musterstrasse",
             "Karlsruhe");
 
-    User user2 = new User(101,
+    UUID user2UUID = UUID.fromString("d6a30b7e-549f-4ef2-86e4-43ebf2ee79e4");
+    User user2 = new User(user2UUID,
             "hundeliebhaber",
             "Schmidt",
             "Laura",
@@ -32,7 +35,8 @@ public class MockData {
             "Hundeallee",
             "Berlin");
 
-    User user3 = new User(102,
+    UUID user3UUID = UUID.fromString("5a26c5c7-7994-481c-9bb1-28e68b02b8e5");
+    User user3 = new User(user3UUID,
             "katzenfreund",
             "Fischer",
             "Julia",
@@ -43,7 +47,8 @@ public class MockData {
             "Katzenweg",
             "Hamburg");
 
-    User user4 = new User(103,
+    UUID user4UUID = UUID.fromString("32a2f352-93c3-4f81-9e0c-11b4a3bebe68");
+    User user4 = new User(user4UUID,
             "tierfreund",
             "Wagner",
             "Anna",
@@ -54,7 +59,8 @@ public class MockData {
             "Tiergartenstraße",
             "München");
 
-    User user5 = new User(104,
+    UUID user5UUID = UUID.fromString("3c146da6-7e7f-4f6c-bff3-329ff2dbdb0b");
+    User user5 = new User(user5UUID,
             "haustierliebhaber",
             "Klein",
             "Sophie",
@@ -65,7 +71,8 @@ public class MockData {
             "Haustiergasse",
             "Frankfurt");
 
-    User user6 = new User(105,
+    UUID user6UUID = UUID.fromString("68a7d1b9-71d3-4c6f-b524-6fd77924ab3b");
+    User user6 = new User(user6UUID,
             "hundekatzenbesitzer",
             "Müller",
             "Markus",
@@ -76,10 +83,11 @@ public class MockData {
             "Tierweg",
             "Stuttgart");
 
-    // Mockdaten fuer Doggos
+    // Mockdaten für Doggos
 
-    Dog dog1 = new Dog(1,
-            100,
+    UUID dog1UUID = UUID.fromString("7e4b21f7-3d44-49c3-8558-2c5f830bedc0");
+    Dog dog1 = new Dog(dog1UUID,
+            user1UUID,
             "Wuffi",
             3,
             "weiblich",
@@ -88,8 +96,9 @@ public class MockData {
             true,
             "Ein lieber Wuffi");
 
-    Dog dog2 = new Dog(2,
-            101,
+    UUID dog2UUID = UUID.fromString("8bdf5470-633b-47a1-bd2c-ae68d7e6d0e5");
+    Dog dog2 = new Dog(dog2UUID,
+            user2UUID,
             "Bello",
             5,
             "männlich",
@@ -98,8 +107,9 @@ public class MockData {
             false,
             "Ein verspielter Bello");
 
-    Dog dog3 = new Dog(3,
-            102,
+    UUID dog3UUID = UUID.fromString("be1d5862-0a9d-4962-b235-014a5c1e2da2");
+    Dog dog3 = new Dog(dog3UUID,
+            user3UUID,
             "Luna",
             2,
             "weiblich",
@@ -108,8 +118,9 @@ public class MockData {
             true,
             "Eine fröhliche Luna");
 
-    Dog dog4 = new Dog(4,
-            103,
+    UUID dog4UUID = UUID.fromString("84e1f2b4-3773-44b7-8db4-7006034e2a11");
+    Dog dog4 = new Dog(dog4UUID,
+            user4UUID,
             "Rocky",
             4,
             "männlich",
@@ -118,8 +129,9 @@ public class MockData {
             true,
             "Ein starker Rocky");
 
-    Dog dog5 = new Dog(5,
-            104,
+    UUID dog5UUID = UUID.fromString("903abf4d-d9f3-4191-83dd-871f36641d86");
+    Dog dog5 = new Dog(dog5UUID,
+            user5UUID,
             "Molly",
             6,
             "weiblich",
@@ -128,8 +140,9 @@ public class MockData {
             false,
             "Eine süße Molly");
 
-    Dog dog6 = new Dog(6,
-            105,
+    UUID dog6UUID = UUID.fromString("f37c97ae-d95e-43d0-ba42-94a2c0422f8b");
+    Dog dog6 = new Dog(dog6UUID,
+            user6UUID,
             "Max",
             1,
             "männlich",
@@ -155,6 +168,5 @@ public class MockData {
         userList.add(user4);
         userList.add(user5);
         userList.add(user6);
-
     }
 }

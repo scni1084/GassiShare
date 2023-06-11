@@ -95,4 +95,7 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    implementation 'androidx.activity:activity:1.2.0'
+
 }

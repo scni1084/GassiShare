@@ -5,14 +5,17 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.util.UUID;
+
 @Entity(tableName = "dog_table")
 public class Dog {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private UUID id;
 
     @NonNull
-    private int user_id;
+    private UUID user_id;
 
     @NonNull
     private String name;
@@ -30,7 +33,7 @@ public class Dog {
     private Integer groesse;
 
 
-    public Dog(int id, @NonNull int user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung) {
+    public Dog(UUID id, @NonNull UUID user_id, @NonNull String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
@@ -42,11 +45,11 @@ public class Dog {
         this.beschreibung = beschreibung;
     }
 
-    public int getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public int getUser_id() {
+    public UUID getUser_id() {
         return this.user_id;
     }
 
