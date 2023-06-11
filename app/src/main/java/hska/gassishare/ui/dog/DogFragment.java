@@ -104,7 +104,7 @@ public class DogFragment extends Fragment {
             editRasse.setText(mainActivity.getAktuellerDog().getRasse());
             editGroesse.setText(mainActivity.getAktuellerDog().getRasse());
             editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
-            editAlter.setText(mainActivity.getAktuellerDog().getAlter());
+            editAlter.setText(mainActivity.getAktuellerDog().getAlter().toString());
 
             //TODO: Geschlecht und kastriert setzen
             //groupGeschlecht.setText(mainActivity.getAktuellerDog().getName());
