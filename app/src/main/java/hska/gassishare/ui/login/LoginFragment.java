@@ -1,5 +1,7 @@
 package hska.gassishare.ui.login;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,6 +123,7 @@ public class LoginFragment extends Fragment {
                     return;
                 }
 
+
                 System.out.println("Der nutzer existiert");
 
                 mainActivity.setAktuellerUser(loginViewModel.getUser(username));
@@ -159,6 +162,24 @@ public class LoginFragment extends Fragment {
                         ""
 
                 );
+
+                //Dialogfenster als Hinweis, Personendaten auszufuellen
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Profil angelegt");
+                builder.setMessage("Bitte fuelle deine Daten unter Profil > meine Angaben weiter aus.");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
+                dialog.show();
+
+                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                navBar.setVisibility(View.VISIBLE);
 
                 loginViewModel.createUser(u);
 
