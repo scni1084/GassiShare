@@ -55,9 +55,6 @@ public class LoginFragment extends Fragment {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setLoginViewModel(loginViewModel);
-
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -99,12 +96,12 @@ public class LoginFragment extends Fragment {
             }
         };
 
-
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);
 
         // OnClick fuer Anmelde-Button
         anmeldenButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("Button wurde geklickt");
                 String username = String.valueOf(usernameInput.getText());
                 String passwort = String.valueOf(passwordInput.getText());
 
@@ -114,15 +111,10 @@ public class LoginFragment extends Fragment {
 
                 System.out.println("Der nutzer existiert");
 
-                // Aktuellen Nutzer setzen
-                loginViewModel.setAktuellerUser(loginViewModel.aktuellenUserAusDbHolen(username));
-
-                //TODO: gibt nur LiveData aus
-                System.out.println(loginViewModel.getAktuellerUser());
+                ((MainActivity)getActivity()).setAktuellerUser(loginViewModel.getUser(username));
 
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
-
 
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -131,22 +123,10 @@ public class LoginFragment extends Fragment {
                         .setReorderingAllowed(true)
                         .addToBackStack("LoginToMapTransaction")
                         .commit();
-
             }
-
-
         });
 
-
-
-        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
-        loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);
-
-
-
-
-
-        // TODO: Machen wenn activity geladen ist
+        // hide navbar on login
         view.post(new Runnable() {
             @Override
             public void run() {

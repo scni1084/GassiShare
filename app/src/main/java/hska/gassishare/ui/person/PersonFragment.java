@@ -44,33 +44,10 @@ public class PersonFragment extends Fragment {
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // loginViewModel fuer Datenzugriff
-        MainActivity mainActivity = (MainActivity) getActivity();
-        loginViewModel = mainActivity.getLoginViewModel();
-
-
-
         return root;
     }
     //TODO: Daten in Behaelter kriegen, in LoginView steht leider nur LiveData
-/*
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        final Observer<List<User>> usersObserver = new Observer<List<User>>() {
-            @Override
-            public void onChanged(@Nullable final List<User> userListe) {
 
-                if (userListe.size() == 0)
-                    return;
-
-                String alleUser = "";
-                User user1 = userListe.get(0);
-
-                editVorname.setText(user1.getUsername());
-            }
-        };
-    }
-*/
     @Override
     public void onDestroyView() {
         super.onDestroyView();

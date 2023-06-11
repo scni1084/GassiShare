@@ -20,11 +20,6 @@ public class LoginViewModel extends AndroidViewModel {
     private LiveData<List<User>> alleUser;
 
     public LiveData<List<User>> getAlleUser() {
-        /* checke nicht warum das nicht geht
-        if (alleUser == null) {
-            alleUser = new LiveData<List<User>>();
-        }*/
-
         return alleUser;
     }
 
@@ -34,35 +29,11 @@ public class LoginViewModel extends AndroidViewModel {
         return aktuellerUser;
     }
 
-    /*
-    public User getAktuellerUser() {
-
-        final User[] zueckgegebenerUser = {null};
-        final Observer<User> userObserver = new Observer<User>() {
-            @Override
-            public void onChanged(@Nullable final User aktuellerUserObserved) {
-
-                if (aktuellerUserObserved == null)
-                    return;
-
-                zueckgegebenerUser[0] = aktuellerUserObserved;
-
-            }
-        };
-
-        return zueckgegebenerUser[1];
-
-    }
-    */
-
-
     public void setAktuellerUser(LiveData<User> aktuellerUser) {
         this.aktuellerUser = aktuellerUser;
     }
 
     private final MutableLiveData<String> mText;
-
-    //private final LiveData<List<User>> mAllUsers;
 
     public LoginViewModel(Application application) {
         super(application);
@@ -71,7 +42,6 @@ public class LoginViewModel extends AndroidViewModel {
         mUserRepository = new UserRepository(application);
 
         alleUser = mUserRepository.getAllUsers();
-
     }
 
     public LiveData<String> getText() {
@@ -80,6 +50,7 @@ public class LoginViewModel extends AndroidViewModel {
 
     public boolean userExists(String username, String password) {return mUserRepository.userExists(username,password);}
 
-    public LiveData<User> aktuellenUserAusDbHolen(String username) {return mUserRepository.getCurrentUser(username);}
-
+    public User getUser(String username) {
+        return mUserRepository.getUser(username);
+    }
 }

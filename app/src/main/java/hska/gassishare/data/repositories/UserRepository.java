@@ -15,10 +15,6 @@ public class UserRepository {
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
 
-    private LiveData<User> mUser;
-
-    private LiveData<User> mCurrentUserData;
-
     // Note that in order to unit test the UserRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
@@ -51,10 +47,7 @@ public class UserRepository {
         });
     }
 
-    public LiveData<User> getCurrentUser(String username) {
-        mCurrentUserData = mUserDao.getCurrentUser(username);
-        return mCurrentUserData;
+    public User getUser(String username) {
+        return mUserDao.getUser(username);
     }
-
-
 }

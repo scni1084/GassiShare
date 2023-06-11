@@ -18,9 +18,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
+import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentProfileBinding;
 import hska.gassishare.ui.animals.AnimalsFragment;
-import hska.gassishare.ui.login.LoginViewModel;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.person.PersonFragment;
 import hska.gassishare.ui.person.PersonViewModel;
@@ -35,8 +35,6 @@ public class ProfileFragment extends Fragment {
 
     private Button buttonAbmelden;
 
-    private LoginViewModel loginViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         PersonViewModel personViewModel =
@@ -45,13 +43,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-        // loginViewModel
-        MainActivity mainActivity = (MainActivity) getActivity();
-        loginViewModel = mainActivity.getLoginViewModel();
-
         return root;
-
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -90,7 +82,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
         buttonDogs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -101,14 +92,9 @@ public class ProfileFragment extends Fragment {
                         .setReorderingAllowed(true)
                         .addToBackStack("ProfileToAnimalsTransaction")
                         .commit();
-
             }
-
         });
-
     }
-
-
 
     @Override
     public void onDestroyView() {

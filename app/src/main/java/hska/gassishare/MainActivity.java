@@ -18,9 +18,6 @@ import hska.gassishare.ui.login.LoginViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
-    private LoginViewModel loginViewModel;
-
     private User aktuellerUser;
 
 
@@ -42,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
 
-
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
-
-
-    }
-
-    public LoginViewModel getLoginViewModel() {
-        return loginViewModel;
-    }
-
-    public void setLoginViewModel(LoginViewModel loginViewModel) {
-        this.loginViewModel = loginViewModel;
     }
 
     public User getAktuellerUser() {

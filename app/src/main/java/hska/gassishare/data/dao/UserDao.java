@@ -30,8 +30,7 @@ public interface UserDao {
     void  update(User user);
 
     @Query("SELECT * FROM user_table WHERE username = :username")
-    LiveData<User> getCurrentUser(String username);
-
+    User getUser(String username);
 
     @Query("SELECT * FROM user_table WHERE username = :username AND passwort = :passwort")
     LiveData<User> LoginPruefen(String username, String passwort);
