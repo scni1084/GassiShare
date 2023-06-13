@@ -13,8 +13,6 @@ import hska.gassishare.data.repositories.DogRepository;
 import hska.gassishare.ui.login.LoginViewModel;
 
 public class AnimalsViewModel extends AndroidViewModel {
-
-
     private DogRepository mRepository;
 
     private final LiveData<List<Dog>> mAllDogs;
@@ -23,7 +21,6 @@ public class AnimalsViewModel extends AndroidViewModel {
 
     public AnimalsViewModel(Application application) {
         super(application);
-
         mRepository = new DogRepository(application);
         mAllDogs = mRepository.getAllDogs();
     }

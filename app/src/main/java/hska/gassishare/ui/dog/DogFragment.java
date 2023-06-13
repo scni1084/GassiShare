@@ -133,7 +133,7 @@ public class DogFragment extends Fragment {
             editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
             editAlter.setText(mainActivity.getAktuellerDog().getAlter().toString());
 
-            // Set the value for groupGeschlecht
+            // Werte fuer groupGeschlecht setzen
             String geschlecht = mainActivity.getAktuellerDog().getGeschlecht(); // Replace with the actual method to get the value
             RadioButton radioButtonGeschlecht;
 
@@ -146,7 +146,7 @@ public class DogFragment extends Fragment {
             }
 
 
-            // Set the value for groupKastriert
+            // Werte fuer groupKastriert setzen
             boolean isKastriert = mainActivity.getAktuellerDog().getKastriert();
             RadioButton radioButtonKastriert;
 
@@ -195,30 +195,15 @@ public class DogFragment extends Fragment {
                 if (editName.getText().toString().equals("") ||
                         editRasse.getText().toString().equals("") ||
                         editGroesse.getText().toString().equals("") ||
-                        editBeschreibung.getText().toString().equals("") ||
                         editAlter.getText().toString().equals("") ||
                         selectedGender.equals("") ||
                         groesse == 0
                 ) {
                     //Dialogfenster als Hinweis, dass Felder vergessen wurden auszufuellen
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Na hör mal");
-                    builder.setMessage("Bitte kontrolliere, ob du alle Felder korrekt ausgefüllt hast.");
-
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
-                    dialog.show();
+                    mainActivity.dialogNotification("Na hör mal",
+                            "Bitte kontrolliere, ob du alle Felder korrekt ausgefüllt hast.");
                     return;
-
                 }
-
-
 
                 // Dog in DB updaten oder erstellen
                 if (mainActivity.getAktuellerDog() == null) {
@@ -227,8 +212,7 @@ public class DogFragment extends Fragment {
                             UUID.randomUUID(),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
-                            0,
-                            //Integer.valueOf(String.valueOf(editAlter.getText())),
+                            Integer.valueOf(String.valueOf(editAlter.getText())),
                             selectedGender,
                             String.valueOf(editRasse.getText()),
                             Integer.valueOf(String.valueOf(editGroesse.getText())),
@@ -237,7 +221,6 @@ public class DogFragment extends Fragment {
                     );
 
                     dogViewModel.doggoAnlegen(doggo);
-
 
                     doggoList.add(doggo);
                     mainActivity.setAktuelleDoggosListe(doggoList);
@@ -263,7 +246,6 @@ public class DogFragment extends Fragment {
 
                 }
 
-                //Navigation wieder sichtbar machen
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 

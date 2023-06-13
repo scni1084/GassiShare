@@ -52,12 +52,8 @@ public class MapFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         map = getView().findViewById(R.id.map);
-        //map.setTileSource(TileSourceFactory.MAPNIK);
 
         requestPermissionsIfNecessary(new String[]{
-                // if you need to show the current location, uncomment the line below
-                // Manifest.permission.ACCESS_FINE_LOCATION,
-                // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         });
 
@@ -70,14 +66,13 @@ public class MapFragment extends Fragment {
         GeoPoint startPoint = new GeoPoint(49.014, 8.404);
         mapController.setCenter(startPoint);
 
-        //Standortmarker setzen
-        // Create an ArrayList to hold your items
+        // Icons fuer Doggos laden
         ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
         Drawable doggoIcon1 = ContextCompat.getDrawable(getActivity(), R.drawable.doggo_marker1);
         Drawable doggoIcon2 = ContextCompat.getDrawable(getActivity(), R.drawable.doggo_marker2);
         Drawable doggoIcon3 = ContextCompat.getDrawable(getActivity(), R.drawable.doggo_marker3);
 
-        // Add an item for each marker you want to display
+        // Marker fuer Doggos setzen
         GeoPoint pointDog1 = new GeoPoint(49.006889, 8.40299);
         GeoPoint pointDog2 = new GeoPoint(49.021435, 8.395378);
         GeoPoint pointDog3 = new GeoPoint(49.013173, 8.407080);
@@ -92,7 +87,6 @@ public class MapFragment extends Fragment {
         items.add(dog2);
         items.add(dog3);
 
-        // Create a new ItemizedIconOverlay with your items
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getActivity(), items,
                 new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
                     @Override

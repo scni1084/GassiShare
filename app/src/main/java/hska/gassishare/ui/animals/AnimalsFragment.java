@@ -29,9 +29,6 @@ public class AnimalsFragment extends Fragment {
 
     private FragmentAnimalsBinding binding;
 
-
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
-
     private AnimalsViewModel animalsViewModel;
 
     private MainActivity mainActivity;

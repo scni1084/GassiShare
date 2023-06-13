@@ -39,9 +39,6 @@ public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
-    // UI-Elemente
-    private TextView textView3;
-
     private EditText usernameInput;
 
     private EditText passwordInput;
@@ -85,7 +82,6 @@ public class LoginFragment extends Fragment {
         anmeldenButton = getView().findViewById(R.id.AnmeldenButton);
         registrierenButton =getView().findViewById(R.id.RegistrierenButton);
 
-        // Create the observer which updates the UI.
         final Observer<List<User>> usersObserver = new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable final List<User> userListe) {
@@ -99,16 +95,12 @@ public class LoginFragment extends Fragment {
                 usernameInput.setText(user1.getUsername());
                 passwordInput.setText(user1.getPasswort());
 
-
                 for (User u : userListe ) {
                     alleUser = alleUser + u.toString();
-                    //usernameInput.setText(u.getUsername());
-                    //passwordInput.setText(u.getPasswort());
                 }
             }
         };
 
-        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
         loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);
 
         // OnClick fuer Anmelde-Button
@@ -127,11 +119,11 @@ public class LoginFragment extends Fragment {
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
+                            dialog.dismiss();
                         }
                     });
                     AlertDialog dialog = builder.create();
-                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
+                    dialog.setCancelable(false);
                     dialog.show();
                     return;
                 }
@@ -165,69 +157,47 @@ public class LoginFragment extends Fragment {
 
                 if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
                     //Dialogfenster als Hinweis, dass Username oder Passwort vergessen
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Registrieren war nicht erfolgreich");
-                    builder.setMessage("Bitte kontrolliere, ob du Username und Passwort eingegeben hast.");
-
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
-                    dialog.show();
+                    mainActivity.dialogNotification("Registrieren war nicht erfolgreich",
+                            "Bitte kontrolliere, ob du Username und Passwort eingegeben hast.");
                 }
+                else {
 
-            User u = new User(
-                        UUID.randomUUID(),
-                        usernameInput.getText().toString(),
-                        "",
-                        "",
-                        passwordInput.getText().toString(),
-                        "",
-                        "",
-                        0,
-                        "",
-                        ""
+                    User u = new User(
+                                UUID.randomUUID(),
+                                usernameInput.getText().toString(),
+                                "",
+                                "",
+                                passwordInput.getText().toString(),
+                                "",
+                                "",
+                                0,
+                                "",
+                                ""
 
-                );
+                        );
 
-                //Dialogfenster als Hinweis, Personendaten auszufuellen
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Profil angelegt");
-                builder.setMessage("Bitte fülle deine Daten unter Profil > meine Angaben weiter aus.");
+                        //Dialogfenster als Hinweis, Personendaten auszufuellen
+                    mainActivity.dialogNotification("Profil angelegt",
+                            "Bitte fülle deine Daten unter Profil > meine Angaben weiter aus.");
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss(); // Dismiss the dialog when the OK button is clicked
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.setCancelable(false); // Prevent dismissing the dialog by tapping outside of it
-                dialog.show();
+                        BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                        navBar.setVisibility(View.VISIBLE);
 
-                BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-                navBar.setVisibility(View.VISIBLE);
+                        loginViewModel.createUser(u);
 
-                loginViewModel.createUser(u);
+                        mainActivity.setAktuellerUser(u);
 
-                mainActivity.setAktuellerUser(u);
-
-                // In anderes Fragment weiterleiten
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("LoginToProfileTransaction")
-                        .commit();
+                        // In anderes Fragment weiterleiten
+                        FragmentManager fragmentManager = getParentFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
+                                .setReorderingAllowed(true)
+                                .addToBackStack("LoginToProfileTransaction")
+                                .commit();
 
 
-            }});
+            }}});
 
-        // hide navbar on login
         view.post(new Runnable() {
             @Override
             public void run() {

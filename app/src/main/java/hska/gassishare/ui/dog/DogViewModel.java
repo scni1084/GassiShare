@@ -11,22 +11,12 @@ import hska.gassishare.data.repositories.DogRepository;
 
 public class DogViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<String> mText;
-
 
     private DogRepository mDogRepository;
 
     public DogViewModel(Application application) {
         super(application);
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dog fragment");
-
-
         mDogRepository = new DogRepository(application);
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
     public void doggoAnlegen(Dog dog) {

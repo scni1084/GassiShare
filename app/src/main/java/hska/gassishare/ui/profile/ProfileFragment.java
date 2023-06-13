@@ -50,6 +50,8 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        mainActivity = (MainActivity) getActivity();
+
         return root;
     }
 
@@ -92,8 +94,7 @@ public class ProfileFragment extends Fragment {
         buttonAbmelden.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                ((MainActivity) getActivity()).setAktuellerUser(null);
-
+                mainActivity.setAktuellerUser(null);
 
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();

@@ -58,13 +58,11 @@ public class PersonFragment extends Fragment {
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Find the ImageView
+        // Image setzen
         ImageView imageView = root.findViewById(R.id.imageView2);
-
-        // Set the image resource
         imageView.setImageResource(R.drawable.avatar);
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 // In anderes Fragment weiterleiten
