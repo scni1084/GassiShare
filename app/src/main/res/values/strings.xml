@@ -7,7 +7,7 @@
     <string name="title_person">Person</string>
     <string name="title_dog">Hund</string>
     <string name="title_animals">Meine Hunde</string>
-    <string name="login">Anmeldung</string>
+    <string name="login">Willkommen bei GassiShare!</string>
     <string name="benutzername">Benutzername</string>
     <string name="passwort">Passwort</string>
     <string name="name_eingeben">Name eingeben...</string>

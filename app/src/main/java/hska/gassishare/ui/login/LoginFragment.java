@@ -80,7 +80,6 @@ public class LoginFragment extends Fragment {
 
         mainActivity = ((MainActivity)getActivity());
 
-        textView3 = getView().findViewById(R.id.textView3);
         usernameInput = getView().findViewById(R.id.UsernameInput);
         passwordInput = getView().findViewById(R.id.PasswordInput);
         anmeldenButton = getView().findViewById(R.id.AnmeldenButton);
@@ -106,7 +105,6 @@ public class LoginFragment extends Fragment {
                     //usernameInput.setText(u.getUsername());
                     //passwordInput.setText(u.getPasswort());
                 }
-                textView3.setText(alleUser);
             }
         };
 
