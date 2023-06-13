@@ -64,7 +64,6 @@ public class PersonFragment extends Fragment {
         // Set the image resource
         imageView.setImageResource(R.drawable.avatar);
 
-        // This callback will only be called when MyFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
