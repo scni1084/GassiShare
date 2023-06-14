@@ -2,11 +2,9 @@ package hska.gassishare.ui.login;
 
 import android.app.Application;
 
-import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,11 +19,11 @@ import hska.gassishare.data.repositories.UserRepository;
  */
 public class LoginViewModel extends AndroidViewModel {
 
+    private final MutableLiveData<String> mText;
     private UserRepository mUserRepository;
     private DogRepository mDogRepository;
     private LiveData<List<User>> alleUser;
     private LiveData<User> aktuellerUser;
-    private final MutableLiveData<String> mText;
 
     /**
      * Konstruktor für das LoginViewModel.

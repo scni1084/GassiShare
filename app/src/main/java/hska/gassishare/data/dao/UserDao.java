@@ -3,13 +3,11 @@
  */
 package hska.gassishare.data.dao;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import java.util.List;
 import java.util.UUID;
@@ -44,16 +42,16 @@ public interface UserDao {
     /**
      * Aktualisiert die Informationen eines Benutzers in der User-Tabelle.
      *
-     * @param id            Die ID des Benutzers.
-     * @param username      Der Benutzername.
-     * @param nachname      Der Nachname des Benutzers.
-     * @param vorname       Der Vorname des Benutzers.
-     * @param passwort      Das Passwort des Benutzers.
-     * @param email         Die E-Mail-Adresse des Benutzers.
-     * @param beschreibung  Die Beschreibung des Benutzers.
-     * @param plz           Die Postleitzahl des Benutzers.
-     * @param strasse       Die Straße des Benutzers.
-     * @param ort           Der Wohnort des Benutzers.
+     * @param id           Die ID des Benutzers.
+     * @param username     Der Benutzername.
+     * @param nachname     Der Nachname des Benutzers.
+     * @param vorname      Der Vorname des Benutzers.
+     * @param passwort     Das Passwort des Benutzers.
+     * @param email        Die E-Mail-Adresse des Benutzers.
+     * @param beschreibung Die Beschreibung des Benutzers.
+     * @param plz          Die Postleitzahl des Benutzers.
+     * @param strasse      Die Straße des Benutzers.
+     * @param ort          Der Wohnort des Benutzers.
      */
     @Query("UPDATE user_table SET username = :username, nachname= :nachname, vorname= :vorname, passwort= :passwort, email= :email, beschreibung= :beschreibung, plz= :plz, strasse= :strasse, ort= :ort WHERE id = :id")
     void update(UUID id, String username, String nachname, String vorname, String passwort, String email, String beschreibung, Integer plz, String strasse, String ort);

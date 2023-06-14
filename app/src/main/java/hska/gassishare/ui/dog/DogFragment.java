@@ -1,7 +1,5 @@
 package hska.gassishare.ui.dog;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +29,6 @@ import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentDogBinding;
 import hska.gassishare.ui.animals.AnimalsFragment;
-import hska.gassishare.ui.profile.ProfileFragment;
 
 public class DogFragment extends Fragment {
 

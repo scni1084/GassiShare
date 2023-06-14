@@ -9,19 +9,15 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
@@ -29,7 +25,6 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import hska.gassishare.R;
-import hska.gassishare.databinding.FragmentMapBinding;
 
 public class MapFragment extends Fragment {
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
@@ -106,6 +101,7 @@ public class MapFragment extends Fragment {
                         // Wird aufgerufen, wenn ein Marker einmal angetippt wird (optional)
                         return true;
                     }
+
                     @Override
                     public boolean onItemLongPress(final int index, final OverlayItem item) {
                         // Wird aufgerufen, wenn ein Marker lange gedrückt wird (optional)

@@ -1,8 +1,6 @@
 package hska.gassishare.data.database;
 
 
-import static java.lang.System.in;
-
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -22,33 +20,8 @@ import hska.gassishare.data.entity.User;
 @Database(entities = {User.class, Dog.class}, version = 1, exportSchema = false)
 public abstract class GassishareDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
-
-    public abstract DogDao dogDao();
-
-
-    // Markierung der Instanz als "volatile", um den atomaren Zugriff auf die Variable sicherzustellen
-    private static volatile GassishareDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 1;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
-    public static GassishareDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (GassishareDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    GassishareDatabase.class, "app_database")
-                            .addCallback(sGassishareDatabaseCallback)
-                            .allowMainThreadQueries()
-                            .build();
-
-                    INSTANCE.userDao().getAlphabetizedUsers();
-                }
-            }
-        }
-        return INSTANCE;
-    }
-
     /**
      * Überschreibt die onCreate-Methode, um die Datenbank zu initialisieren.
      * In diesem Beispiel leeren wir die Datenbank jedes Mal, wenn sie erstellt wird.
@@ -79,4 +52,27 @@ public abstract class GassishareDatabase extends RoomDatabase {
             });
         }
     };
+    // Markierung der Instanz als "volatile", um den atomaren Zugriff auf die Variable sicherzustellen
+    private static volatile GassishareDatabase INSTANCE;
+
+    public static GassishareDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (GassishareDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                                    GassishareDatabase.class, "app_database")
+                            .addCallback(sGassishareDatabaseCallback)
+                            .allowMainThreadQueries()
+                            .build();
+
+                    INSTANCE.userDao().getAlphabetizedUsers();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    public abstract UserDao userDao();
+
+    public abstract DogDao dogDao();
 }

@@ -9,12 +9,10 @@ import java.util.List;
 
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.repositories.DogRepository;
-import hska.gassishare.ui.login.LoginViewModel;
 
 public class AnimalsViewModel extends AndroidViewModel {
-    private DogRepository mRepository;
-
     private final LiveData<List<Dog>> mAllDogs;
+    private DogRepository mRepository;
 
     /**
      * Konstruktor für das AnimalsViewModel.

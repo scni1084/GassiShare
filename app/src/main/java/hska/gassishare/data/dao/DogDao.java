@@ -4,7 +4,6 @@
 
 package hska.gassishare.data.dao;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -53,15 +52,15 @@ public interface DogDao {
     /**
      * Aktualisiert die Informationen eines Hunds in der Dog-Tabelle.
      *
-     * @param id            Die ID des Hunds.
-     * @param user_id       Die ID des Benutzers.
-     * @param name          Der Name des Hunds.
-     * @param alter         Das Alter des Hunds.
-     * @param geschlecht    Das Geschlecht des Hunds.
-     * @param rasse         Die Rasse des Hunds.
-     * @param groesse       Die Größe des Hunds.
-     * @param kastriert     Gibt an, ob der Hund kastriert ist oder nicht.
-     * @param beschreibung  Die Beschreibung des Hunds.
+     * @param id           Die ID des Hunds.
+     * @param user_id      Die ID des Benutzers.
+     * @param name         Der Name des Hunds.
+     * @param alter        Das Alter des Hunds.
+     * @param geschlecht   Das Geschlecht des Hunds.
+     * @param rasse        Die Rasse des Hunds.
+     * @param groesse      Die Größe des Hunds.
+     * @param kastriert    Gibt an, ob der Hund kastriert ist oder nicht.
+     * @param beschreibung Die Beschreibung des Hunds.
      */
     @Query("UPDATE dog_table SET name= :name, `alter`= :alter, geschlecht= :geschlecht, rasse= :rasse, groesse= :groesse, kastriert= :kastriert, beschreibung= :beschreibung WHERE id =:id AND user_id= :user_id")
     void updateDog(UUID id, UUID user_id, String name, Integer alter, String geschlecht, String rasse, Integer groesse, Boolean kastriert, String beschreibung);

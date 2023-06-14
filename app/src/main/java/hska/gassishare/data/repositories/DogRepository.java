@@ -10,7 +10,6 @@ import java.util.UUID;
 import hska.gassishare.data.dao.DogDao;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.Dog;
-import hska.gassishare.data.entity.User;
 
 public class DogRepository {
 

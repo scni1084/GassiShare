@@ -1,14 +1,11 @@
 package hska.gassishare.ui.animals;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 
 public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
@@ -16,10 +13,12 @@ public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
     private OnItemClickListener mListener;
 
     /**
-     * Interface für den Click-Listener der Liste.
+     * Konstruktor für den AnimalsListAdapter.
+     *
+     * @param diffCallback Das DiffUtil.ItemCallback-Objekt für die Vergleichslogik.
      */
-    public interface OnItemClickListener {
-        void onItemClick(int position);
+    public AnimalsListAdapter(@NonNull DiffUtil.ItemCallback<Dog> diffCallback) {
+        super(diffCallback);
     }
 
     /**
@@ -40,15 +39,6 @@ public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
         return mListener;
     }
 
-    /**
-     * Konstruktor für den AnimalsListAdapter.
-     *
-     * @param diffCallback Das DiffUtil.ItemCallback-Objekt für die Vergleichslogik.
-     */
-    public AnimalsListAdapter(@NonNull DiffUtil.ItemCallback<Dog> diffCallback) {
-        super(diffCallback);
-    }
-
     @Override
     public AnimalsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return AnimalsViewHolder.create(parent, mListener);
@@ -58,6 +48,13 @@ public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
     public void onBindViewHolder(AnimalsViewHolder holder, int position) {
         Dog current = getItem(position);
         holder.bind(current.getName());
+    }
+
+    /**
+     * Interface für den Click-Listener der Liste.
+     */
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
     /**

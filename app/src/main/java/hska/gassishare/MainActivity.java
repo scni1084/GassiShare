@@ -7,8 +7,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,8 +19,6 @@ import java.util.List;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.ActivityMainBinding;
-import hska.gassishare.ui.login.LoginFragment;
-import hska.gassishare.ui.login.LoginViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

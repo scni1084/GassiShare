@@ -1,13 +1,11 @@
 package hska.gassishare.ui.animals;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,8 +19,6 @@ import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentAnimalsBinding;
 import hska.gassishare.ui.dog.DogFragment;
-import hska.gassishare.ui.login.LoginViewModel;
-import hska.gassishare.ui.person.PersonFragment;
 
 public class AnimalsFragment extends Fragment {
 

@@ -36,15 +36,6 @@ public class AnimalsViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Bindet die Daten an den ViewHolder.
-     *
-     * @param text Der Text, der angezeigt werden soll.
-     */
-    public void bind(String text) {
-        dogItemView.setText(text);
-    }
-
-    /**
      * Erstellt einen neuen AnimalsViewHolder.
      *
      * @param parent   Die Eltern-View.
@@ -55,5 +46,14 @@ public class AnimalsViewHolder extends RecyclerView.ViewHolder {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
         return new AnimalsViewHolder(view, listener);
+    }
+
+    /**
+     * Bindet die Daten an den ViewHolder.
+     *
+     * @param text Der Text, der angezeigt werden soll.
+     */
+    public void bind(String text) {
+        dogItemView.setText(text);
     }
 }

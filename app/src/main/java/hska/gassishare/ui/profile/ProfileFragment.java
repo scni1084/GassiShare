@@ -13,19 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
-import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentProfileBinding;
 import hska.gassishare.ui.animals.AnimalsFragment;
 import hska.gassishare.ui.login.LoginFragment;
-import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.person.PersonFragment;
 import hska.gassishare.ui.person.PersonViewModel;
 
