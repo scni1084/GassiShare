@@ -67,8 +67,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:hint="Größe in cm" />
+            android:hint="Größe in cm"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editHundeBeschreibung"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:ems="10"
+            android:hint="Beschreibung"
+            android:inputType="text" />
 
         <RadioGroup
             android:id="@+id/groupGeschlecht"
@@ -122,14 +130,6 @@
                 android:layout_weight="1"
                 android:text="Nein" />
         </RadioGroup>
-
-        <EditText
-            android:id="@+id/editHundeBeschreibung"
-            android:layout_width="match_parent"
-            android:layout_height="84dp"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Beschreibung" />
 
         <Button
             android:id="@+id/dogSpeichern"
