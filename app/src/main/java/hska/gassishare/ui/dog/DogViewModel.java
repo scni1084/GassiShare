@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.repositories.DogRepository;
 
@@ -24,4 +26,5 @@ public class DogViewModel extends AndroidViewModel {
     }
 
     public void doggoAendern(Dog dog) {mDogRepository.updateDog(dog);}
+
 }

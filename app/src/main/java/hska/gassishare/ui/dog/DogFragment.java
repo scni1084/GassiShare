@@ -21,6 +21,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -223,6 +225,12 @@ public class DogFragment extends Fragment {
                     dogViewModel.doggoAnlegen(doggo);
 
                     doggoList.add(doggo);
+                    Collections.sort(doggoList, new Comparator<Dog>() {
+                        @Override
+                        public int compare(Dog o1, Dog o2) {
+                            return o1.getName().compareTo(o2.getName()); // Assuming Dog has a 'getName' method
+                        }
+                    });
                     mainActivity.setAktuelleDoggosListe(doggoList);
 
                 }
@@ -243,6 +251,15 @@ public class DogFragment extends Fragment {
                     dogViewModel.doggoAendern(doggo);
                     doggoList.remove(aktuellerDoggo);
                     doggoList.add(doggo);
+
+                    Collections.sort(doggoList, new Comparator<Dog>() {
+                        @Override
+                        public int compare(Dog o1, Dog o2) {
+                            return o1.getName().compareTo(o2.getName()); // Assuming Dog has a 'getName' method
+                        }
+                    });
+
+                    mainActivity.setAktuelleDoggosListe(doggoList);
 
                 }
 
