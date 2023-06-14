@@ -269,5 +269,7 @@ public class DogFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+        navBar.setVisibility(View.VISIBLE);
     }
 }
