@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/sprechblase"
+        android:icon="@drawable/account_icon"
         android:title="@string/title_profile" />
 
     <item
         android:id="@+id/navigation_map"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/map_icon"
         android:title="@string/title_home" />
 
 
     <item
         android:id="@+id/navigation_animals"
-        android:icon="@drawable/sprechblase"
+        android:icon="@drawable/pets_icon"
         android:title="@string/title_animals" />
 
 </menu>
