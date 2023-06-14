@@ -15,32 +15,48 @@ public class UserRepository {
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
 
-    // Note that in order to unit test the UserRepository, you have to remove the Application
-    // dependency. This adds complexity and much more code, and this sample is not about testing.
-    // See the BasicSample in the android-architecture-components repository at
-    // https://github.com/googlesamples
     public UserRepository(Application application) {
         GassishareDatabase db = GassishareDatabase.getDatabase(application);
         mUserDao = db.userDao();
         mAllUsers = mUserDao.getAlphabetizedUsers();
     }
 
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
+    /**
+     * Ruft alle Benutzer als LiveData-Objekt ab.
+     *
+     * @return Eine LiveData-Liste aller Benutzer.
+     */
     public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
 
-    public boolean userExists(String username, String password) {return mUserDao.userExisting(username,password);}
+    /**
+     * Überprüft, ob ein Benutzer mit dem angegebenen Benutzernamen und Passwort existiert.
+     *
+     * @param username Der Benutzername.
+     * @param password Das Passwort.
+     * @return true, wenn der Benutzer existiert, ansonsten false.
+     */
+    public boolean userExists(String username, String password) {
+        return mUserDao.userExisting(username, password);
+    }
 
-    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-    // that you're not doing any long running operations on the main thread, blocking the UI.
+    /**
+     * Fügt einen neuen Benutzer in die Datenbank ein.
+     *
+     * @param user Der einzufügende Benutzer.
+     */
     public void insert(User user) {
         GassishareDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.insert(user);
         });
     }
 
+    /**
+     * Aktualisiert die Informationen eines Benutzers in der Datenbank.
+     *
+     * @param user Der zu aktualisierende Benutzer.
+     */
     public void update(User user) {
         GassishareDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.update(
@@ -58,6 +74,12 @@ public class UserRepository {
         });
     }
 
+    /**
+     * Ruft einen Benutzer mit dem angegebenen Benutzernamen ab.
+     *
+     * @param username Der Benutzername.
+     * @return Der Benutzer mit dem angegebenen Benutzernamen oder null, wenn kein Benutzer gefunden wurde.
+     */
     public User getUser(String username) {
         return mUserDao.getUser(username);
     }

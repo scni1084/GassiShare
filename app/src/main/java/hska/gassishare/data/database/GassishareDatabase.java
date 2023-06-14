@@ -27,7 +27,7 @@ public abstract class GassishareDatabase extends RoomDatabase {
     public abstract DogDao dogDao();
 
 
-    // marking the instance as volatile to ensure atomic access to the variable
+    // Markierung der Instanz als "volatile", um den atomaren Zugriff auf die Variable sicherzustellen
     private static volatile GassishareDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 1;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -42,35 +42,16 @@ public abstract class GassishareDatabase extends RoomDatabase {
                             .allowMainThreadQueries()
                             .build();
 
-
                     INSTANCE.userDao().getAlphabetizedUsers();
-
-
-/*
-                    DogDao dogDao = INSTANCE.dogDao();
-                    UserDao userDao = INSTANCE.userDao();
-                    dogDao.deleteAll();
-                    userDao.deleteAll();
-
-                    MockData mockData = new MockData();
-
-                    for (User usr : mockData.userList) {
-                        userDao.insert(usr);
-                    }
-
-                    for (Dog doggo : mockData.doggoList) {
-                        dogDao.insert(doggo);
-                    } */
                 }
             }
         }
         return INSTANCE;
     }
 
-
     /**
-     * Override the onCreate method to populate the database.
-     * For this sample, we clear the database every time it is created.
+     * Überschreibt die onCreate-Methode, um die Datenbank zu initialisieren.
+     * In diesem Beispiel leeren wir die Datenbank jedes Mal, wenn sie erstellt wird.
      */
     private static RoomDatabase.Callback sGassishareDatabaseCallback = new RoomDatabase.Callback() {
 
@@ -79,8 +60,8 @@ public abstract class GassishareDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
+                // Die Datenbank im Hintergrund befüllen.
+                // Wenn Sie mit mehreren Daten starten möchten, fügen Sie sie einfach hinzu.
                 DogDao dogDao = INSTANCE.dogDao();
                 UserDao userDao = INSTANCE.userDao();
                 dogDao.deleteAll();

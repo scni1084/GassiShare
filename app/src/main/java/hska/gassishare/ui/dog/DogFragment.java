@@ -228,7 +228,7 @@ public class DogFragment extends Fragment {
                     Collections.sort(doggoList, new Comparator<Dog>() {
                         @Override
                         public int compare(Dog o1, Dog o2) {
-                            return o1.getName().compareTo(o2.getName()); // Assuming Dog has a 'getName' method
+                            return o1.getName().compareTo(o2.getName());
                         }
                     });
                     mainActivity.setAktuelleDoggosListe(doggoList);
@@ -255,7 +255,7 @@ public class DogFragment extends Fragment {
                     Collections.sort(doggoList, new Comparator<Dog>() {
                         @Override
                         public int compare(Dog o1, Dog o2) {
-                            return o1.getName().compareTo(o2.getName()); // Assuming Dog has a 'getName' method
+                            return o1.getName().compareTo(o2.getName());
                         }
                     });
 

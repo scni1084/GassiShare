@@ -1,3 +1,6 @@
+/**
+ * Schnittstelle für den Zugriff auf die User-Datenbanktabelle.
+ */
 package hska.gassishare.data.dao;
 
 import androidx.annotation.NonNull;
@@ -15,29 +18,62 @@ import hska.gassishare.data.entity.User;
 
 @Dao
 public interface UserDao {
-    // LiveData is a data holder class that can be observed within a given lifecycle.
-    // Always holds/caches latest version of data. Notifies its active observers when the
-    // data has changed. Since we are getting all the contents of the database,
-    // we are notified whenever any of the database contents have changed.
+
+    /**
+     * Gibt eine LiveData-Liste aller alphabetisch sortierten Benutzer aus der User-Tabelle zurück.
+     *
+     * @return LiveData-Liste der alphabetisch sortierten Benutzer.
+     */
     @Query("SELECT * FROM user_table ORDER BY username ASC")
     LiveData<List<User>> getAlphabetizedUsers();
 
+    /**
+     * Fügt einen neuen Benutzer in die Datenbank ein.
+     *
+     * @param user Der einzufügende Benutzer.
+     */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(User user);
 
+    /**
+     * Löscht alle Benutzer aus der User-Tabelle.
+     */
     @Query("DELETE FROM user_table")
     void deleteAll();
 
-    @Query("UPDATE user_table SET username = :username, nachname= :nachname, vorname= :vorname, passwort= :passwort,  email= :email,beschreibung= :beschreibung,plz= :plz,strasse= :strasse, ort= :ort WHERE id =:id")
+    /**
+     * Aktualisiert die Informationen eines Benutzers in der User-Tabelle.
+     *
+     * @param id            Die ID des Benutzers.
+     * @param username      Der Benutzername.
+     * @param nachname      Der Nachname des Benutzers.
+     * @param vorname       Der Vorname des Benutzers.
+     * @param passwort      Das Passwort des Benutzers.
+     * @param email         Die E-Mail-Adresse des Benutzers.
+     * @param beschreibung  Die Beschreibung des Benutzers.
+     * @param plz           Die Postleitzahl des Benutzers.
+     * @param strasse       Die Straße des Benutzers.
+     * @param ort           Der Wohnort des Benutzers.
+     */
+    @Query("UPDATE user_table SET username = :username, nachname= :nachname, vorname= :vorname, passwort= :passwort, email= :email, beschreibung= :beschreibung, plz= :plz, strasse= :strasse, ort= :ort WHERE id = :id")
     void update(UUID id, String username, String nachname, String vorname, String passwort, String email, String beschreibung, Integer plz, String strasse, String ort);
 
+    /**
+     * Gibt einen Benutzer anhand des Benutzernamens zurück.
+     *
+     * @param username Der Benutzername.
+     * @return Der gefundene Benutzer oder null, wenn kein Benutzer mit dem angegebenen Benutzernamen gefunden wurde.
+     */
     @Query("SELECT * FROM user_table WHERE username = :username")
     User getUser(String username);
 
-
+    /**
+     * Überprüft, ob ein Benutzer mit dem angegebenen Benutzernamen und Passwort vorhanden ist.
+     *
+     * @param username Der Benutzername.
+     * @param password Das Passwort.
+     * @return true, wenn der Benutzer existiert, andernfalls false.
+     */
     @Query("SELECT EXISTS (SELECT * FROM user_table WHERE username = :username AND passwort = :password)")
     boolean userExisting(String username, String password);
-
-
-
 }
