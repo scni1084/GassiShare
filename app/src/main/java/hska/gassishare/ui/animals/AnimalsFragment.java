@@ -26,11 +26,9 @@ import hska.gassishare.ui.person.PersonFragment;
 
 public class AnimalsFragment extends Fragment {
 
-    private FragmentAnimalsBinding binding;
-
-    private AnimalsViewModel animalsViewModel;
-
-    private MainActivity mainActivity;
+    private FragmentAnimalsBinding binding;     // Binding für das Fragment
+    private AnimalsViewModel animalsViewModel;  // ViewModel für die Tiere
+    private MainActivity mainActivity;         // Referenz auf die MainActivity
 
     /**
      * Erstellt die View des Fragments.
@@ -60,7 +58,6 @@ public class AnimalsFragment extends Fragment {
         adapter.setOnItemClickListener(new AnimalsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                System.out.println("Button wurde geklickt");
                 Dog clickedDog = mainActivity.getAktuelleDoggosListe().get(position);
                 mainActivity.setAktuellerDog(clickedDog);
 

@@ -33,15 +33,19 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
 
-    private Button buttonPerson;
+    private Button buttonPerson;           // Button für den Benutzerbereich
+    private Button buttonDogs;             // Button für die Hundeübersicht
+    private Button buttonAbmelden;         // Button für die Abmeldung
+    private MainActivity mainActivity;    // Referenz auf die MainActivity
 
-    private Button buttonDogs;
-
-    private Button buttonAbmelden;
-
-
-    private MainActivity mainActivity;
-
+    /**
+     * Erstellt und gibt die Benutzeroberfläche des Fragments zurück.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die View zu erstellen.
+     * @param container          Die ViewGroup, zu der die View hinzugefügt wird.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     * @return Die erstellte View des Fragments.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         PersonViewModel personViewModel =
@@ -55,10 +59,15 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Wird aufgerufen, nachdem die View des Fragments erstellt wurde.
+     *
+     * @param view               Die erstellte View des Fragments.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // This callback will only be called when OnBackPressedDispatcher#onBackPressed() is called.
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                 new OnBackPressedCallback(true /* enabled by default */) {
                     @Override
@@ -71,48 +80,38 @@ public class ProfileFragment extends Fragment {
                 });
 
         buttonPerson = getView().findViewById(R.id.buttonPerson);
-
         buttonAbmelden = getView().findViewById(R.id.AbmeldenButton);
-
         buttonDogs = getView().findViewById(R.id.buttonDogs);
 
         buttonPerson.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                // In anderes Fragment weiterleiten
+                // Weiterleitung zu einem anderen Fragment
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, PersonFragment.class, null)
                         .setReorderingAllowed(true)
                         .addToBackStack("ProfileToPersonTransaction")
                         .commit();
-
             }
-
         });
 
         buttonAbmelden.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 mainActivity.setAktuellerUser(null);
 
-                // In anderes Fragment weiterleiten
+                // Weiterleitung zu einem anderen Fragment
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, LoginFragment.class, null)
                         .setReorderingAllowed(true)
                         .addToBackStack("ProfileToLoginTranscation")
                         .commit();
-
-
-
             }
         });
 
         buttonDogs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                // In anderes Fragment weiterleiten
+                // Weiterleitung zu einem anderen Fragment
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
@@ -129,7 +128,6 @@ public class ProfileFragment extends Fragment {
 
                 while (navBar == null) {
                     navBar = getActivity().findViewById(R.id.nav_view);
-
                 }
                 navBar.setVisibility(View.VISIBLE);
             }

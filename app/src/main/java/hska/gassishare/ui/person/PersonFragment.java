@@ -27,30 +27,27 @@ public class PersonFragment extends Fragment {
 
     private FragmentPersonBinding binding;
 
-    private EditText editVorname;
+    private EditText editVorname;           // Eingabefeld für den Vornamen
+    private EditText editNachname;          // Eingabefeld für den Nachnamen
+    private EditText editEmail;             // Eingabefeld für die E-Mail
+    private EditText editBeschreibung;      // Eingabefeld für die Beschreibung
+    private EditText editStrasse;           // Eingabefeld für die Straße
+    private EditText editPLZ;               // Eingabefeld für die PLZ
+    private EditText editOrt;               // Eingabefeld für den Ort
+    private EditText editOldPassword;       // Eingabefeld für das alte Passwort
+    private EditText editNewPassword;       // Eingabefeld für das neue Passwort
+    private Button aenderungenSpeichernButton;  // Button zum Speichern der Änderungen
+    private MainActivity mainActivity;      // Referenz auf die MainActivity
+    private PersonViewModel personViewModel; // ViewModel für die Person
 
-    private EditText editNachname;
-
-    private EditText editEmail;
-
-    private EditText editBeschreibung;
-
-    private EditText editStrasse;
-
-    private EditText editPLZ;
-
-    private EditText editOrt;
-
-    private EditText editOldPassword;
-
-    private EditText editNewPassword;
-
-    private Button aenderungenSpeichernButton;
-
-    private MainActivity mainActivity;
-
-    private PersonViewModel personViewModel;
-
+    /**
+     * Erstellt und gibt die Benutzeroberfläche des Fragments zurück.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die View zu erstellen.
+     * @param container          Die ViewGroup, zu der die View hinzugefügt wird.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     * @return Die erstellte View des Fragments.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         personViewModel = new ViewModelProvider(this).get(PersonViewModel.class);
@@ -58,14 +55,14 @@ public class PersonFragment extends Fragment {
         binding = FragmentPersonBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Image setzen
+        // Setze das Bild
         ImageView imageView = root.findViewById(R.id.imageView2);
         imageView.setImageResource(R.drawable.avatar);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // In anderes Fragment weiterleiten
+                // Weiterleitung zu einem anderen Fragment
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
@@ -76,16 +73,17 @@ public class PersonFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
-
-
-
         return root;
     }
 
-
+    /**
+     * Wird aufgerufen, nachdem die View des Fragments erstellt wurde.
+     *
+     * @param view               Die erstellte View des Fragments.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         view.post(new Runnable() {
             @Override
@@ -94,14 +92,12 @@ public class PersonFragment extends Fragment {
 
                 while (navBar == null) {
                     navBar = getActivity().findViewById(R.id.nav_view);
-
                 }
                 navBar.setVisibility(View.GONE);
             }
         });
 
-
-        mainActivity = ((MainActivity)getActivity());
+        mainActivity = ((MainActivity) getActivity());
         User aktuellerUser = mainActivity.getAktuellerUser();
 
         editVorname = getView().findViewById(R.id.editVorname);
@@ -116,7 +112,6 @@ public class PersonFragment extends Fragment {
 
         aenderungenSpeichernButton = getView().findViewById(R.id.buttonSpeichern);
 
-
         editVorname.setText(aktuellerUser.getVorname());
         editNachname.setText(aktuellerUser.getNachname());
         editEmail.setText(aktuellerUser.getEmail());
@@ -127,19 +122,15 @@ public class PersonFragment extends Fragment {
 
         aenderungenSpeichernButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                // Aenderungen nehmen
-
+                // Änderungen übernehmen
                 String savedPW = aktuellerUser.getPasswort();
 
-                if(String.valueOf(editNewPassword.getText()) == "" ||
-                        String.valueOf(editOldPassword) != aktuellerUser.getPasswort()
-                ) {
-                }
-                else {
+                if (String.valueOf(editNewPassword.getText()) == "" ||
+                        String.valueOf(editOldPassword) != aktuellerUser.getPasswort()) {
+                    // Kein neues Passwort eingegeben oder falsches altes Passwort
+                } else {
                     savedPW = String.valueOf(editNewPassword.getText());
                 }
-
 
                 User geaenderterUser = new User(
                         aktuellerUser.getId(),
@@ -154,34 +145,24 @@ public class PersonFragment extends Fragment {
                         String.valueOf(editOrt.getText())
                 );
 
-                // User in Activity updaten
+                // Aktualisiere den Benutzer in der Activity
                 mainActivity.setAktuellerUser(geaenderterUser);
 
-                // User in DB updaten
+                // Aktualisiere den Benutzer in der Datenbank
                 personViewModel.UserUpdaten(geaenderterUser);
 
-
-                //Navigation wieder sichtbar machen
+                // Mache die Navigation wieder sichtbar
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 
-
-                // In anderes Fragment weiterleiten
+                // Weiterleitung zu einem anderen Fragment
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
                         .setReorderingAllowed(true)
                         .addToBackStack("PersonToProfileFragmentTransaction")
                         .commit();
-
             }
         });
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

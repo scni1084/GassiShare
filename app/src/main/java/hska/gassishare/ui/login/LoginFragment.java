@@ -8,14 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
 
@@ -26,61 +23,63 @@ import java.util.UUID;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
-import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.map.MapFragment;
 import hska.gassishare.ui.profile.ProfileFragment;
 
-
+/**
+ * Fragment für den Login-Bereich.
+ */
 public class LoginFragment extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentLoginBinding binding;     // Binding für das Fragment
+    private LoginViewModel loginViewModel;    // ViewModel für den Login
+    private EditText usernameInput;           // Eingabefeld für den Benutzernamen
+    private EditText passwordInput;           // Eingabefeld für das Passwort
+    private Button anmeldenButton;            // Button für die Anmeldung
+    private Button registrierenButton;        // Button für die Registrierung
+    private MainActivity mainActivity;       // Referenz auf die MainActivity
 
-    private LoginViewModel loginViewModel;
 
-    private EditText usernameInput;
-
-    private EditText passwordInput;
-
-    private Button anmeldenButton;
-
-    private Button registrierenButton;
-
-    private MainActivity mainActivity;
-
-    // neu
+    /**
+     * Konstruktor für das LoginFragment.
+     */
     public LoginFragment() {
         super(R.layout.fragment_login);
-
-
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    /**
+     * Wird aufgerufen, um die Benutzeroberfläche des Fragments zu erstellen und zurückzugeben.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet werden kann, um XML in View-Objekte umzuwandeln.
+     * @param container          Wenn nicht null, ist dies der übergeordnete View, an den das Fragment angehängt wird.
+     * @param savedInstanceState Wenn nicht null, enthält das Fragment den zuvor gespeicherten Zustand.
+     * @return Der View des Fragments.
+     */
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
         return root;
-
     }
 
+    /**
+     * Wird aufgerufen, sobald die View des Fragments erstellt wurde.
+     *
+     * @param view               Der erstellte View des Fragments.
+     * @param savedInstanceState Wenn nicht null, enthält das Fragment den zuvor gespeicherten Zustand.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mainActivity = ((MainActivity)getActivity());
-
+        mainActivity = ((MainActivity) getActivity());
         usernameInput = getView().findViewById(R.id.UsernameInput);
         passwordInput = getView().findViewById(R.id.PasswordInput);
         anmeldenButton = getView().findViewById(R.id.AnmeldenButton);
-        registrierenButton =getView().findViewById(R.id.RegistrierenButton);
+        registrierenButton = getView().findViewById(R.id.RegistrierenButton);
 
         final Observer<List<User>> usersObserver = new Observer<List<User>>() {
             @Override
@@ -95,7 +94,7 @@ public class LoginFragment extends Fragment {
                 usernameInput.setText(user1.getUsername());
                 passwordInput.setText(user1.getPasswort());
 
-                for (User u : userListe ) {
+                for (User u : userListe) {
                     alleUser = alleUser + u.toString();
                 }
             }
@@ -103,18 +102,21 @@ public class LoginFragment extends Fragment {
 
         loginViewModel.getAlleUser().observe(getViewLifecycleOwner(), usersObserver);
 
-        // OnClick fuer Anmelde-Button
         anmeldenButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Wird aufgerufen, wenn der Anmelde-Button geklickt wird.
+             *
+             * @param v Die geklickte View.
+             */
             public void onClick(View v) {
                 String username = String.valueOf(usernameInput.getText());
                 String passwort = String.valueOf(passwordInput.getText());
 
-                if(!loginViewModel.userExists(username,passwort)) {
-                    //Dialogfenster als Hinweis, dass User nicht existiert
+                if (!loginViewModel.userExists(username, passwort)) {
+                    // Dialogfenster als Hinweis, dass der Benutzer nicht existiert
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("Benutzer nicht gefunden");
-                    builder.setMessage("Bitte kontrolliere, ob du Username und Passwort korrekt eingegeben hast. " +
-                            "Wenn du neu bist, registriere dich bitte.");
+                    builder.setMessage("Bitte überprüfen Sie, ob Sie den Benutzernamen und das Passwort korrekt eingegeben haben. Wenn Sie neu sind, registrieren Sie sich bitte.");
 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -128,19 +130,13 @@ public class LoginFragment extends Fragment {
                     return;
                 }
 
-
-                System.out.println("Der nutzer existiert");
-
                 mainActivity.setAktuellerUser(loginViewModel.getUser(username));
-
                 UUID userId = mainActivity.getAktuellerUser().getId();
-
                 mainActivity.setAktuelleDoggosListe(loginViewModel.getDogsForUser(userId));
 
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 
-                // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
@@ -148,68 +144,62 @@ public class LoginFragment extends Fragment {
                         .addToBackStack("LoginToProfileTransaction")
                         .commit();
             }
-
         });
 
         registrierenButton.setOnClickListener(new View.OnClickListener() {
-
+            /**
+             * Wird aufgerufen, wenn der Registrieren-Button geklickt wird.
+             *
+             * @param v Die geklickte View.
+             */
             public void onClick(View v) {
-
                 if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
-                    //Dialogfenster als Hinweis, dass Username oder Passwort vergessen
-                    mainActivity.dialogNotification("Registrieren war nicht erfolgreich",
-                            "Bitte kontrolliere, ob du Username und Passwort eingegeben hast.");
-                }
-                else {
-
+                    // Dialogfenster als Hinweis, dass Benutzername oder Passwort vergessen wurden
+                    mainActivity.dialogNotification("Registrierung fehlgeschlagen", "Bitte überprüfen Sie, ob Sie Benutzername und Passwort eingegeben haben.");
+                } else {
                     User u = new User(
-                                UUID.randomUUID(),
-                                usernameInput.getText().toString(),
-                                "",
-                                "",
-                                passwordInput.getText().toString(),
-                                "",
-                                "",
-                                0,
-                                "",
-                                ""
+                            UUID.randomUUID(),
+                            usernameInput.getText().toString(),
+                            "",
+                            "",
+                            passwordInput.getText().toString(),
+                            "",
+                            "",
+                            0,
+                            "",
+                            ""
+                    );
 
-                        );
+                    mainActivity.dialogNotification("Profil erstellt", "Bitte füllen Sie Ihre Daten unter 'Profil > Meine Angaben' weiter aus.");
 
-                        //Dialogfenster als Hinweis, Personendaten auszufuellen
-                    mainActivity.dialogNotification("Profil angelegt",
-                            "Bitte fülle deine Daten unter Profil > meine Angaben weiter aus.");
+                    BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+                    navBar.setVisibility(View.VISIBLE);
 
-                        BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-                        navBar.setVisibility(View.VISIBLE);
+                    loginViewModel.createUser(u);
+                    mainActivity.setAktuellerUser(u);
 
-                        loginViewModel.createUser(u);
-
-                        mainActivity.setAktuellerUser(u);
-
-                        // In anderes Fragment weiterleiten
-                        FragmentManager fragmentManager = getParentFragmentManager();
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                                .setReorderingAllowed(true)
-                                .addToBackStack("LoginToProfileTransaction")
-                                .commit();
-
-
-            }}});
+                    FragmentManager fragmentManager = getParentFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("LoginToProfileTransaction")
+                            .commit();
+                }
+            }
+        });
 
         view.post(new Runnable() {
+            /**
+             * Wird ausgeführt, nachdem die View des Fragments erstellt wurde.
+             */
             @Override
             public void run() {
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-
                 while (navBar == null) {
                     navBar = getActivity().findViewById(R.id.nav_view);
-
                 }
                 navBar.setVisibility(View.GONE);
             }
         });
     }
 }
-

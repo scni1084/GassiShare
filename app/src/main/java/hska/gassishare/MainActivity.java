@@ -26,15 +26,17 @@ import hska.gassishare.ui.login.LoginViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
-    private User aktuellerUser;
+    private ActivityMainBinding binding;             // Binding für die MainActivity
+    private User aktuellerUser;                      // Aktuell angemeldeter Benutzer
+    private List<Dog> aktuelleDoggosListe;            // Aktuelle Liste der Hunde
+    private Dog aktuellerDog = null;                  // Aktuell ausgewählter Hund
+    private AppBarConfiguration appBarConfiguration;  // Konfiguration der App-Leiste
 
-    private List<Dog> aktuelleDoggosListe;
-
-    private Dog aktuellerDog = null;
-
-    private AppBarConfiguration appBarConfiguration;
-
+    /**
+     * Wird aufgerufen, wenn die Aktivität erstellt wird.
+     *
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand der Aktivität.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +52,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-
     }
 
+    /**
+     * Wird aufgerufen, wenn der Up-Navigationsschalter geklickt wird.
+     *
+     * @return true, wenn die Aktion abgeschlossen wurde, andernfalls false.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
@@ -61,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /**
+     * Wird aufgerufen, wenn die Zurück-Taste gedrückt wird.
+     */
     @Override
     public void onBackPressed() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
@@ -69,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Wird aufgerufen, wenn ein Menüelement ausgewählt wird.
+     *
+     * @param item Das ausgewählte Menüelement.
+     * @return true, wenn die Aktion abgeschlossen wurde, andernfalls false.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -78,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Zeigt einen Dialog mit einer Benachrichtigung an.
+     *
+     * @param title   Der Titel des Dialogs.
+     * @param message Die Nachricht des Dialogs.
+     */
     public void dialogNotification(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
@@ -94,27 +114,56 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
+    /**
+     * Gibt den aktuellen angemeldeten Benutzer zurück.
+     *
+     * @return Der aktuelle Benutzer.
+     */
     public User getAktuellerUser() {
         return aktuellerUser;
     }
 
+    /**
+     * Setzt den aktuellen angemeldeten Benutzer.
+     *
+     * @param aktuellerUser Der aktuelle Benutzer.
+     */
     public void setAktuellerUser(User aktuellerUser) {
         this.aktuellerUser = aktuellerUser;
     }
 
+    /**
+     * Gibt die aktuelle Liste der Hunde zurück.
+     *
+     * @return Die aktuelle Liste der Hunde.
+     */
     public List<Dog> getAktuelleDoggosListe() {
         return aktuelleDoggosListe;
     }
 
+    /**
+     * Setzt die aktuelle Liste der Hunde.
+     *
+     * @param aktuelleDoggosListe Die aktuelle Liste der Hunde.
+     */
     public void setAktuelleDoggosListe(List<Dog> aktuelleDoggosListe) {
         this.aktuelleDoggosListe = aktuelleDoggosListe;
     }
 
+    /**
+     * Gibt den aktuell ausgewählten Hund zurück.
+     *
+     * @return Der aktuell ausgewählte Hund.
+     */
     public Dog getAktuellerDog() {
         return aktuellerDog;
     }
 
+    /**
+     * Setzt den aktuell ausgewählten Hund.
+     *
+     * @param aktuellerDog Der aktuell ausgewählte Hund.
+     */
     public void setAktuellerDog(Dog aktuellerDog) {
         this.aktuellerDog = aktuellerDog;
     }

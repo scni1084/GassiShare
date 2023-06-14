@@ -24,7 +24,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import hska.gassishare.MainActivity;
@@ -36,32 +35,29 @@ import hska.gassishare.ui.profile.ProfileFragment;
 
 public class DogFragment extends Fragment {
 
-    private FragmentDogBinding binding;
+    private FragmentDogBinding binding;         // Binding für das Fragment
+    private Dog aktuellerDoggo;                 // Aktuell ausgewählter Hund
+    private MainActivity mainActivity;          // Referenz auf die MainActivity
+    private EditText editName;                   // Eingabefeld für den Namen des Hundes
+    private EditText editRasse;                  // Eingabefeld für die Rasse des Hundes
+    private EditText editGroesse;                // Eingabefeld für die Größe des Hundes
+    private EditText editBeschreibung;           // Eingabefeld für die Beschreibung des Hundes
+    private EditText editAlter;                  // Eingabefeld für das Alter des Hundes
+    private RadioGroup groupGeschlecht;          // RadioGroup für das Geschlecht des Hundes
+    private RadioGroup groupKastriert;           // RadioGroup für die Kastration des Hundes
+    private Button dogSpeichern;                 // Button zum Speichern der Hundedaten
+    private DogViewModel dogViewModel;           // ViewModel für die Hunde
+    private List<Dog> doggoList;                 // Liste der Hunde
 
-    private Dog aktuellerDoggo;
 
-    private MainActivity mainActivity;
-
-    private EditText editName;
-
-    private EditText editRasse;
-
-    private EditText editGroesse;
-
-    private EditText editBeschreibung;
-
-    private EditText editAlter;
-
-    private RadioGroup groupGeschlecht;
-
-    private RadioGroup groupKastriert;
-
-    private Button dogSpeichern;
-
-    private DogViewModel dogViewModel;
-
-    private List<Dog> doggoList;
-
+    /**
+     * Erstellt die View des Fragments.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die XML-Layoutdatei in ein View-Objekt umzuwandeln.
+     * @param container          Der Eltern-View, in den das Fragment eingefügt wird.
+     * @param savedInstanceState Das gespeicherte Zustandsbundle.
+     * @return Die erstellte View des Fragments.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
@@ -69,7 +65,7 @@ public class DogFragment extends Fragment {
         binding = FragmentDogBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        mainActivity = (MainActivity)getActivity();
+        mainActivity = (MainActivity) getActivity();
 
         aktuellerDoggo = mainActivity.getAktuellerDog();
 
@@ -88,7 +84,7 @@ public class DogFragment extends Fragment {
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
+                        .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
                         .setReorderingAllowed(true)
                         .addToBackStack("DogToProfilFragmentTransaction")
                         .commit();
@@ -99,6 +95,12 @@ public class DogFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Wird aufgerufen, nachdem die View des Fragments erstellt wurde.
+     *
+     * @param view               Die erstellte View des Fragments.
+     * @param savedInstanceState Das gespeicherte Zustandsbundle.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -109,7 +111,6 @@ public class DogFragment extends Fragment {
 
                 while (navBar == null) {
                     navBar = getActivity().findViewById(R.id.nav_view);
-
                 }
                 navBar.setVisibility(View.GONE);
             }
@@ -127,7 +128,7 @@ public class DogFragment extends Fragment {
         dogSpeichern = getView().findViewById(R.id.dogSpeichern);
 
         //Werte in TextViews setzen, falls Dog existiert
-        if(mainActivity.getAktuellerDog() != null) {
+        if (mainActivity.getAktuellerDog() != null) {
 
             editName.setText(mainActivity.getAktuellerDog().getName());
             editRasse.setText(mainActivity.getAktuellerDog().getRasse());
@@ -146,7 +147,6 @@ public class DogFragment extends Fragment {
                 radioButtonGeschlecht = view.findViewById(R.id.radioGeschlecht2);
                 radioButtonGeschlecht.setChecked(true);
             }
-
 
             // Werte fuer groupKastriert setzen
             boolean isKastriert = mainActivity.getAktuellerDog().getKastriert();
@@ -167,7 +167,6 @@ public class DogFragment extends Fragment {
 
                 // Geschlecht setzen
                 int selectedRadioButtonId = groupGeschlecht.getCheckedRadioButtonId();
-
                 String selectedGender = "";
 
                 if (selectedRadioButtonId == R.id.radioGeschlecht1) {
@@ -178,7 +177,6 @@ public class DogFragment extends Fragment {
 
                 // Kastriert setzen
                 int selectedRadioButtonIdKastriert = groupGeschlecht.getCheckedRadioButtonId();
-
                 boolean kastriert = false;
 
                 if (selectedRadioButtonIdKastriert == R.id.radioGeschlecht1) {
@@ -199,8 +197,7 @@ public class DogFragment extends Fragment {
                         editGroesse.getText().toString().equals("") ||
                         editAlter.getText().toString().equals("") ||
                         selectedGender.equals("") ||
-                        groesse == 0
-                ) {
+                        groesse == 0) {
                     //Dialogfenster als Hinweis, dass Felder vergessen wurden auszufuellen
                     mainActivity.dialogNotification("Na hör mal",
                             "Bitte kontrolliere, ob du alle Felder korrekt ausgefüllt hast.");
@@ -209,7 +206,6 @@ public class DogFragment extends Fragment {
 
                 // Dog in DB updaten oder erstellen
                 if (mainActivity.getAktuellerDog() == null) {
-
                     Dog doggo = new Dog(
                             UUID.randomUUID(),
                             mainActivity.getAktuellerUser().getId(),
@@ -233,8 +229,7 @@ public class DogFragment extends Fragment {
                     });
                     mainActivity.setAktuelleDoggosListe(doggoList);
 
-                }
-                else {
+                } else {
                     Dog doggo = new Dog(
                             mainActivity.getAktuellerDog().getId(),
                             mainActivity.getAktuellerUser().getId(),
@@ -246,7 +241,6 @@ public class DogFragment extends Fragment {
                             kastriert,
                             String.valueOf(editBeschreibung.getText())
                     );
-
 
                     dogViewModel.doggoAendern(doggo);
                     doggoList.remove(aktuellerDoggo);
@@ -266,7 +260,6 @@ public class DogFragment extends Fragment {
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 
-
                 // In anderes Fragment weiterleiten
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction()
@@ -277,7 +270,6 @@ public class DogFragment extends Fragment {
 
                 // Dog in Activity updaten
                 mainActivity.setAktuellerDog(null);
-
             }
         });
     }
