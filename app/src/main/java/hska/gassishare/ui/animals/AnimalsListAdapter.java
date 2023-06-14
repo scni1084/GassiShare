@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import hska.gassishare.data.entity.Dog;
 
+/**
+ * Hilfsklasse für Listenzugriffe auf die Hundeliste
+ */
 public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
 
     private OnItemClickListener mListener;

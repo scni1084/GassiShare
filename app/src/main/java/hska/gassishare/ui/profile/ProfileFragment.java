@@ -25,6 +25,9 @@ import hska.gassishare.ui.login.LoginFragment;
 import hska.gassishare.ui.person.PersonFragment;
 import hska.gassishare.ui.person.PersonViewModel;
 
+/**
+ * Fragment für die Profilauswahl bzw. Home-Menü
+ */
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;

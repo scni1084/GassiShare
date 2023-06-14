@@ -1,6 +1,4 @@
-/**
- * Schnittstelle für den Zugriff auf die Dog-Datenbanktabelle.
- */
+
 
 package hska.gassishare.data.dao;
 
@@ -15,6 +13,9 @@ import java.util.UUID;
 
 import hska.gassishare.data.entity.Dog;
 
+/**
+ * Interface für den Zugriff auf die Dog-Datenbanktabelle.
+ */
 @Dao
 public interface DogDao {
 

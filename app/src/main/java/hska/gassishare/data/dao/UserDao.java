@@ -1,6 +1,4 @@
-/**
- * Schnittstelle für den Zugriff auf die User-Datenbanktabelle.
- */
+
 package hska.gassishare.data.dao;
 
 import androidx.lifecycle.LiveData;
@@ -14,6 +12,9 @@ import java.util.UUID;
 
 import hska.gassishare.data.entity.User;
 
+/**
+ * Schnittstelle für den Zugriff auf die User-Datenbanktabelle.
+ */
 @Dao
 public interface UserDao {
 

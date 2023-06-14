@@ -23,10 +23,11 @@ import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentPersonBinding;
 import hska.gassishare.ui.profile.ProfileFragment;
 
+/**
+ * Fragment für die Ansicht einer Person
+ */
 public class PersonFragment extends Fragment {
-
     private FragmentPersonBinding binding;
-
     private EditText editVorname;           // Eingabefeld für den Vornamen
     private EditText editNachname;          // Eingabefeld für den Nachnamen
     private EditText editEmail;             // Eingabefeld für die E-Mail

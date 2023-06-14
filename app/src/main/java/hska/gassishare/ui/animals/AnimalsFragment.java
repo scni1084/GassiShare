@@ -20,6 +20,9 @@ import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentAnimalsBinding;
 import hska.gassishare.ui.dog.DogFragment;
 
+/**
+ * Fragment für die Listenansicht der Tiere
+ */
 public class AnimalsFragment extends Fragment {
 
     private FragmentAnimalsBinding binding;     // Binding für das Fragment

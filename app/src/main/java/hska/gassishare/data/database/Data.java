@@ -7,9 +7,10 @@ import java.util.UUID;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 
-public class MockData {
-
-    // Mockdaten für User
+/**
+ * Daten, die beim ersten Initialisieren der Datenbank geladen werden
+ */
+public class Data {
 
     public List<Dog> doggoList = new ArrayList<Dog>();
     public List<User> userList = new ArrayList<User>();
@@ -142,7 +143,7 @@ public class MockData {
             true,
             "Ein energiegeladener Max");
 
-    public MockData() {
+    public Data() {
         doggoList.add(dog1);
         doggoList.add(dog2);
         doggoList.add(dog3);

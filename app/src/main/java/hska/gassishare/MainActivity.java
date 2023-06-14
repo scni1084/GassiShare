@@ -20,6 +20,10 @@ import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.ActivityMainBinding;
 
+
+/**
+ * MainActivity der GassiShare-App
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;             // Binding für die MainActivity

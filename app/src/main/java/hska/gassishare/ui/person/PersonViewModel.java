@@ -7,6 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.data.repositories.UserRepository;
 
+/**
+ * ViewModel für die Ansicht einer Person
+ */
 public class PersonViewModel extends AndroidViewModel {
 
     private UserRepository mUserRepository;

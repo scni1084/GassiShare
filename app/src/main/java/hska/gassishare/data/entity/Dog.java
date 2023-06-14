@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
+/**
+ * Entity-Klasse zur Beschreibung eines Hundes
+ */
 @Entity(tableName = "dog_table")
 public class Dog {
 

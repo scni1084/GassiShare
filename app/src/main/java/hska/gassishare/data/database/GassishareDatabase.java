@@ -17,6 +17,9 @@ import hska.gassishare.data.dao.UserDao;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.entity.User;
 
+/**
+ * Datenbank der Gassishare-App
+ */
 @Database(entities = {User.class, Dog.class}, version = 1, exportSchema = false)
 public abstract class GassishareDatabase extends RoomDatabase {
 
@@ -40,7 +43,7 @@ public abstract class GassishareDatabase extends RoomDatabase {
                 dogDao.deleteAll();
                 userDao.deleteAll();
 
-                MockData mockData = new MockData();
+                Data mockData = new Data();
 
                 for (User usr : mockData.userList) {
                     userDao.insert(usr);

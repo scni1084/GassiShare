@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import hska.gassishare.R;
 
+/**
+ * Viewholder für den Recyclerview (Listenansicht) der Tiere
+ */
 public class AnimalsViewHolder extends RecyclerView.ViewHolder {
     private final TextView dogItemView;
 

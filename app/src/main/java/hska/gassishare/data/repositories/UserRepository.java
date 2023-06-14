@@ -10,6 +10,10 @@ import hska.gassishare.data.dao.UserDao;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.User;
 
+
+/**
+ * Repository für den Zugriff auf die User-Datenbanktabelle unter Benutzung der DAO.
+ */
 public class UserRepository {
 
     private UserDao mUserDao;

@@ -10,6 +10,9 @@ import java.util.List;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.data.repositories.DogRepository;
 
+/**
+ * ViewModel für die Listenansicht der Tiere
+ */
 public class AnimalsViewModel extends AndroidViewModel {
     private final LiveData<List<Dog>> mAllDogs;
     private DogRepository mRepository;

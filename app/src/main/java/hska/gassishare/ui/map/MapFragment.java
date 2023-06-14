@@ -26,9 +26,12 @@ import java.util.ArrayList;
 
 import hska.gassishare.R;
 
+/**
+ * Fragment für die Kartenansicht
+ */
 public class MapFragment extends Fragment {
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
-    private MapView map; // Ein View fuer die Kartenansicht
+    private MapView map; // Ein View für die Kartenansicht
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

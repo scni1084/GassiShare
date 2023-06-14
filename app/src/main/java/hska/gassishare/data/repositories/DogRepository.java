@@ -11,6 +11,10 @@ import hska.gassishare.data.dao.DogDao;
 import hska.gassishare.data.database.GassishareDatabase;
 import hska.gassishare.data.entity.Dog;
 
+
+/**
+ * Repository für den Zugriff auf die Dog-Datenbanktabelle unter Benutzung der DAO.
+ */
 public class DogRepository {
 
     private DogDao mDogDAO;

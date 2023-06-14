@@ -7,6 +7,10 @@ import androidx.room.PrimaryKey;
 import java.util.Objects;
 import java.util.UUID;
 
+
+/**
+ * Entity-Klasse zur Beschreibung eines Users
+ */
 @Entity(tableName = "user_table")
 public class User {
 
