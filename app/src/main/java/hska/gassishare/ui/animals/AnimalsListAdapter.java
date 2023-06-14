@@ -10,22 +10,41 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
+
 public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
 
     private OnItemClickListener mListener;
 
+    /**
+     * Interface für den Click-Listener der Liste.
+     */
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
+    /**
+     * Setzt den Click-Listener für die Liste.
+     *
+     * @param listener Der OnItemClickListener.
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
+    /**
+     * Gibt den aktuellen OnItemClickListener zurück.
+     *
+     * @return Der OnItemClickListener.
+     */
     public OnItemClickListener getmListener() {
         return mListener;
     }
 
+    /**
+     * Konstruktor für den AnimalsListAdapter.
+     *
+     * @param diffCallback Das DiffUtil.ItemCallback-Objekt für die Vergleichslogik.
+     */
     public AnimalsListAdapter(@NonNull DiffUtil.ItemCallback<Dog> diffCallback) {
         super(diffCallback);
     }
@@ -41,6 +60,9 @@ public class AnimalsListAdapter extends ListAdapter<Dog, AnimalsViewHolder> {
         holder.bind(current.getName());
     }
 
+    /**
+     * DiffUtil.ItemCallback-Klasse für den Vergleich der Hunde.
+     */
     static class WordDiff extends DiffUtil.ItemCallback<Dog> {
 
         @Override

@@ -12,6 +12,12 @@ import hska.gassishare.R;
 public class AnimalsViewHolder extends RecyclerView.ViewHolder {
     private final TextView dogItemView;
 
+    /**
+     * Konstruktor für den AnimalsViewHolder.
+     *
+     * @param itemView Die View des Items.
+     * @param listener Der OnItemClickListener.
+     */
     private AnimalsViewHolder(View itemView, final AnimalsListAdapter.OnItemClickListener listener) {
         super(itemView);
         dogItemView = itemView.findViewById(R.id.textView);
@@ -29,10 +35,22 @@ public class AnimalsViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
+    /**
+     * Bindet die Daten an den ViewHolder.
+     *
+     * @param text Der Text, der angezeigt werden soll.
+     */
     public void bind(String text) {
         dogItemView.setText(text);
     }
 
+    /**
+     * Erstellt einen neuen AnimalsViewHolder.
+     *
+     * @param parent   Die Eltern-View.
+     * @param listener Der OnItemClickListener.
+     * @return Der erstellte AnimalsViewHolder.
+     */
     static AnimalsViewHolder create(ViewGroup parent, AnimalsListAdapter.OnItemClickListener listener) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);

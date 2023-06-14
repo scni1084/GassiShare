@@ -20,7 +20,6 @@ import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentAnimalsBinding;
-import hska.gassishare.databinding.FragmentLoginBinding;
 import hska.gassishare.ui.dog.DogFragment;
 import hska.gassishare.ui.login.LoginViewModel;
 import hska.gassishare.ui.person.PersonFragment;
@@ -33,6 +32,14 @@ public class AnimalsFragment extends Fragment {
 
     private MainActivity mainActivity;
 
+    /**
+     * Erstellt die View des Fragments.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die XML-Layoutdatei in ein View-Objekt umzuwandeln.
+     * @param container          Der Eltern-View, in den das Fragment eingefügt wird.
+     * @param savedInstanceState Das gespeicherte Zustandsbundle.
+     * @return Die erstellte View des Fragments.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -41,7 +48,7 @@ public class AnimalsFragment extends Fragment {
         binding = FragmentAnimalsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        mainActivity = (MainActivity)getActivity();
+        mainActivity = (MainActivity) getActivity();
 
         animalsViewModel = new ViewModelProvider(this).get(AnimalsViewModel.class);
 
@@ -67,7 +74,7 @@ public class AnimalsFragment extends Fragment {
 
             }
         });
-        adapter.submitList(((MainActivity)getActivity()).getAktuelleDoggosListe());
+        adapter.submitList(((MainActivity) getActivity()).getAktuelleDoggosListe());
 
 
         FloatingActionButton fab = binding.fab;
@@ -85,6 +92,4 @@ public class AnimalsFragment extends Fragment {
         return root;
 
     }
-
-
 }
