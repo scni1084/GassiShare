@@ -74,10 +74,12 @@
         <EditText
             android:id="@+id/editHundeBeschreibung"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="wrap_content"
             android:ems="10"
+            android:gravity="top|start"
             android:hint="Beschreibung"
-            android:inputType="text" />
+            android:inputType="textMultiLine"/>
+
 
         <RadioGroup
             android:id="@+id/groupGeschlecht"
@@ -139,15 +141,4 @@
             android:text="Speichern" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
