@@ -77,21 +77,6 @@ public class DogFragment extends Fragment {
         // Set the image resource
         imageView.setImageResource(R.drawable.dog1);
 
-        // Im Falle des Abbruchs
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                // In anderes Fragment weiterleiten
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("DogToProfilFragmentTransaction")
-                        .commit();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
-
         return root;
     }
 

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,13 +61,7 @@ public class AnimalsFragment extends Fragment {
                 Dog clickedDog = mainActivity.getAktuelleDoggosListe().get(position);
                 mainActivity.setAktuellerDog(clickedDog);
 
-                // Weiterleiten in Einzelansicht
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, DogFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("AnimalsToDogTransaction")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.dogFragment);
 
             }
         });
@@ -75,13 +70,7 @@ public class AnimalsFragment extends Fragment {
 
         FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(view -> {
-            // In anderes Fragment weiterleiten
-            FragmentManager fragmentManager = getParentFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment_activity_main, DogFragment.class, null)
-                    .setReorderingAllowed(true)
-                    .addToBackStack("AnimalsToDogTransaction")
-                    .commit();
+            Navigation.findNavController(getView()).navigate(R.id.dogFragment);
         });
 
 

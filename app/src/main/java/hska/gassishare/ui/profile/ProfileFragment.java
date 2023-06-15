@@ -110,13 +110,7 @@ public class ProfileFragment extends Fragment {
 
         buttonDogs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Weiterleitung zu einem anderen Fragment
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("ProfileToAnimalsTransaction")
-                        .commit();
+                Navigation.findNavController(v).navigate(R.id.navigation_animals);
             }
         });
 

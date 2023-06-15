@@ -78,21 +78,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Wird aufgerufen, wenn ein Menüelement ausgewählt wird.
-     *
-     * @param item Das ausgewählte Menüelement.
-     * @return true, wenn die Aktion abgeschlossen wurde, andernfalls false.
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-        getSupportFragmentManager().popBackStack();
-
-        return true;
-    }
-
-    /**
      * Zeigt einen Dialog mit einer Benachrichtigung an.
      *
      * @param title   Der Titel des Dialogs.

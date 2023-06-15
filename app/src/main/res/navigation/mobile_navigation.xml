@@ -28,4 +28,14 @@
         android:name="hska.gassishare.ui.animals.AnimalsFragment"
         android:label="@string/title_animals"
         tools:layout="@layout/fragment_animals" />
+    <fragment
+        android:id="@+id/dogFragment"
+        android:name="hska.gassishare.ui.dog.DogFragment"
+        android:label="Einzelansicht Hund"
+        tools:layout="@layout/fragment_dog" />
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="hska.gassishare.ui.person.PersonFragment"
+        android:label="Meine Angaben"
+        tools:layout="@layout/fragment_person" />
 </navigation>

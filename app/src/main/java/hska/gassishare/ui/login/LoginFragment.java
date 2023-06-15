@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -136,12 +137,7 @@ public class LoginFragment extends Fragment {
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("LoginToProfileTransaction")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.navigation_profile);
             }
         });
 
