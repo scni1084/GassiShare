@@ -1,4 +1,3 @@
-
 package hska.gassishare.data.dao;
 
 import androidx.lifecycle.LiveData;

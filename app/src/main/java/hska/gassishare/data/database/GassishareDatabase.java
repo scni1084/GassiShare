@@ -25,6 +25,8 @@ public abstract class GassishareDatabase extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS = 1;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    // Markierung der Instanz als "volatile", um den atomaren Zugriff auf die Variable sicherzustellen
+    private static volatile GassishareDatabase INSTANCE;
     /**
      * Überschreibt die onCreate-Methode, um die Datenbank zu initialisieren.
      * In diesem Beispiel leeren wir die Datenbank jedes Mal, wenn sie erstellt wird.
@@ -55,8 +57,6 @@ public abstract class GassishareDatabase extends RoomDatabase {
             });
         }
     };
-    // Markierung der Instanz als "volatile", um den atomaren Zugriff auf die Variable sicherzustellen
-    private static volatile GassishareDatabase INSTANCE;
 
     public static GassishareDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

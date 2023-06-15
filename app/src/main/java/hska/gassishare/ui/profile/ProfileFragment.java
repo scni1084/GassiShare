@@ -10,7 +10,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,9 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.databinding.FragmentProfileBinding;
-import hska.gassishare.ui.animals.AnimalsFragment;
-import hska.gassishare.ui.login.LoginFragment;
-import hska.gassishare.ui.person.PersonFragment;
 import hska.gassishare.ui.person.PersonViewModel;
 
 /**
@@ -85,12 +81,7 @@ public class ProfileFragment extends Fragment {
         buttonPerson.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Weiterleitung zu einem anderen Fragment
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, PersonFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("ProfileToPersonTransaction")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.personFragment);
             }
         });
 
@@ -99,12 +90,7 @@ public class ProfileFragment extends Fragment {
                 mainActivity.setAktuellerUser(null);
 
                 // Weiterleitung zu einem anderen Fragment
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, LoginFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("ProfileToLoginTranscation")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.navigation_login);
             }
         });
 

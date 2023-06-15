@@ -10,12 +10,11 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,7 +27,6 @@ import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentDogBinding;
-import hska.gassishare.ui.animals.AnimalsFragment;
 
 /**
  * Fragment für die Einzelansicht eines Hundes
@@ -246,12 +244,7 @@ public class DogFragment extends Fragment {
                 navBar.setVisibility(View.VISIBLE);
 
                 // In anderes Fragment weiterleiten
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, AnimalsFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("DogToAnimalsFragmentTransaction")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.navigation_animals);
 
                 // Dog in Activity updaten
                 mainActivity.setAktuellerDog(null);

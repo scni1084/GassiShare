@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +18,6 @@ import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.Dog;
 import hska.gassishare.databinding.FragmentAnimalsBinding;
-import hska.gassishare.ui.dog.DogFragment;
 
 /**
  * Fragment für die Listenansicht der Tiere

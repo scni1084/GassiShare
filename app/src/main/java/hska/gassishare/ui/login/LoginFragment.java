@@ -12,7 +12,6 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -26,7 +25,6 @@ import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentLoginBinding;
-import hska.gassishare.ui.profile.ProfileFragment;
 
 /**
  * Fragment für den Login-Bereich.
@@ -173,12 +171,7 @@ public class LoginFragment extends Fragment {
                     loginViewModel.createUser(u);
                     mainActivity.setAktuellerUser(u);
 
-                    FragmentManager fragmentManager = getParentFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("LoginToProfileTransaction")
-                            .commit();
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_profile);
                 }
             }
         });

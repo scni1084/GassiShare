@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,7 +20,6 @@ import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
 import hska.gassishare.databinding.FragmentPersonBinding;
-import hska.gassishare.ui.profile.ProfileFragment;
 
 /**
  * Fragment für die Ansicht einer Person
@@ -59,20 +57,6 @@ public class PersonFragment extends Fragment {
         // Setze das Bild
         ImageView imageView = root.findViewById(R.id.imageView2);
         imageView.setImageResource(R.drawable.avatar);
-
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                // Weiterleitung zu einem anderen Fragment
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("PersonToProfileFragmentTransaction")
-                        .commit();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
         return root;
     }
@@ -157,12 +141,7 @@ public class PersonFragment extends Fragment {
                 navBar.setVisibility(View.VISIBLE);
 
                 // Weiterleitung zu einem anderen Fragment
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_activity_main, ProfileFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("PersonToProfileFragmentTransaction")
-                        .commit();
+                Navigation.findNavController(getView()).navigate(R.id.navigation_profile);
             }
         });
     }
