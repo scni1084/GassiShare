@@ -1,5 +1,7 @@
 package hska.gassishare.ui.login;
 
+import static java.lang.System.in;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
@@ -92,9 +95,7 @@ public class LoginFragment extends Fragment {
                 usernameInput.setText(user1.getUsername());
                 passwordInput.setText(user1.getPasswort());
 
-                for (User u : userListe) {
-                    alleUser = alleUser + u.toString();
-                }
+                mainActivity.setAllUsers(userListe);
             }
         };
 
@@ -148,8 +149,16 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
                     // Dialogfenster als Hinweis, dass Benutzername oder Passwort vergessen wurden
-                    mainActivity.dialogNotification("Registrierung fehlgeschlagen", "Bitte überprüfen Sie, ob Sie Benutzername und Passwort eingegeben haben.");
-                } else {
+                    mainActivity.dialogNotification("Registrierung fehlgeschlagen",
+                            "Bitte überprüfen Sie, ob Sie Benutzername und Passwort eingegeben haben.");
+
+                }
+                else if (loginViewModel.usernameExists(usernameInput.getText().toString())) {
+                        mainActivity.dialogNotification("Username existiert bereits",
+                                "Bitte suchen Sie sich einen anderen Usernamen aus");
+                    }
+
+                else {
                     User u = new User(
                             UUID.randomUUID(),
                             usernameInput.getText().toString(),

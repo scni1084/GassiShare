@@ -74,6 +74,7 @@ public class ProfileFragment extends Fragment {
         buttonAbmelden.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mainActivity.setAktuellerUser(null);
+                mainActivity.setAktuelleDoggosListe(null);
 
                 // Weiterleitung zu einem anderen Fragment
                 Navigation.findNavController(getView()).navigate(R.id.navigation_login);

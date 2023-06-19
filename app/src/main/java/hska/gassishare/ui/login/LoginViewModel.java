@@ -59,6 +59,16 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     /**
+     * Überprüft, ob der Benutzername existiert.
+     *
+     * @param username Der Benutzername.
+     * @return true, wenn der Benutzer existiert, false sonst.
+     */
+    public boolean usernameExists(String username) {
+        return mUserRepository.usernameExists(username);
+    }
+
+    /**
      * Gibt den Benutzer anhand des Benutzernamens zurück.
      *
      * @param username Der Benutzername.

@@ -74,4 +74,13 @@ public interface UserDao {
      */
     @Query("SELECT EXISTS (SELECT * FROM user_table WHERE username = :username AND passwort = :password)")
     boolean userExisting(String username, String password);
+
+    /**
+     * Überprüft, ob ein Benutzer mit dem angegebenen Benutzernamen und Passwort vorhanden ist.
+     *
+     * @param username Der Benutzername.
+     * @return true, wenn der Benutzer existiert, andernfalls false.
+     */
+    @Query("SELECT EXISTS (SELECT * FROM user_table WHERE username = :username)")
+    boolean usernameExisting(String username);
 }

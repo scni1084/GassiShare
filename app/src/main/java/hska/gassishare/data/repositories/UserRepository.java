@@ -46,6 +46,16 @@ public class UserRepository {
     }
 
     /**
+     * Überprüft, ob ein Benutzer mit dem angegebenen Benutzernamen und Passwort existiert.
+     *
+     * @param username Der Benutzername.
+     * @return true, wenn der Benutzer existiert, ansonsten false.
+     */
+    public boolean usernameExists(String username) {
+        return mUserDao.usernameExisting(username);
+    }
+
+    /**
      * Fügt einen neuen Benutzer in die Datenbank ein.
      *
      * @param user Der einzufügende Benutzer.

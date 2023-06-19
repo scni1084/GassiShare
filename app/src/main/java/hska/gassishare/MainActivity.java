@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private Dog aktuellerDog = null;                  // Aktuell ausgewählter Hund
     private AppBarConfiguration appBarConfiguration;  // Konfiguration der App-Leiste
 
+    private List<User> allUsers;
+
     /**
      * Wird aufgerufen, wenn die Aktivität erstellt wird.
      *
@@ -149,5 +151,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void setAktuellerDog(Dog aktuellerDog) {
         this.aktuellerDog = aktuellerDog;
+    }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public void setAllUsers(List<User> allUsers) {
+        this.allUsers = allUsers;
     }
 }
