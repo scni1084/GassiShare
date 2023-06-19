@@ -29,7 +29,7 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
 
     private Button buttonPerson;           // Button für den Benutzerbereich
-    private Button buttonDogs;             // Button für die Hundeübersicht
+
     private Button buttonAbmelden;         // Button für die Abmeldung
     private MainActivity mainActivity;    // Referenz auf die MainActivity
 
@@ -63,20 +63,8 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                new OnBackPressedCallback(true /* enabled by default */) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        // Handle the back button event
-                        // For example, navigate to another fragment
-                        NavController navController = Navigation.findNavController(view);
-                        navController.navigate(R.id.navigation_profile);
-                    }
-                });
-
         buttonPerson = getView().findViewById(R.id.buttonPerson);
         buttonAbmelden = getView().findViewById(R.id.AbmeldenButton);
-        buttonDogs = getView().findViewById(R.id.buttonDogs);
 
         buttonPerson.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -91,12 +79,6 @@ public class ProfileFragment extends Fragment {
 
                 // Weiterleitung zu einem anderen Fragment
                 Navigation.findNavController(getView()).navigate(R.id.navigation_login);
-            }
-        });
-
-        buttonDogs.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_animals);
             }
         });
 
