@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hska.gassishare.data.entity.Dog;
@@ -123,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
      * @return Die aktuelle Liste der Hunde.
      */
     public List<Dog> getAktuelleDoggosListe() {
+        if (aktuelleDoggosListe == null) {
+            aktuelleDoggosListe = new ArrayList<Dog>();
+        }
+
         return aktuelleDoggosListe;
     }
 
