@@ -102,8 +102,14 @@ public class PersonFragment extends Fragment {
         editEmail.setText(aktuellerUser.getEmail());
         editBeschreibung.setText(aktuellerUser.getBeschreibung());
         editStrasse.setText(aktuellerUser.getStrasse());
-        editPLZ.setText(aktuellerUser.getPlz().toString());
         editOrt.setText(aktuellerUser.getOrt());
+
+        if (aktuellerUser.getPlz().equals(0)) {
+            editPLZ.setText("");
+        }
+        else {
+            editPLZ.setText(String.valueOf(aktuellerUser.getPlz()));
+        }
 
         aenderungenSpeichernButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
