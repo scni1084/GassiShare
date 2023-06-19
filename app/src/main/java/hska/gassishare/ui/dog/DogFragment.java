@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -86,6 +88,7 @@ public class DogFragment extends Fragment {
      */
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mainActivity.setAktuellerDog(null);
 
         view.post(new Runnable() {
             @Override
@@ -111,16 +114,16 @@ public class DogFragment extends Fragment {
         dogSpeichern = getView().findViewById(R.id.dogSpeichern);
 
         //Werte in TextViews setzen, falls Dog existiert
-        if (mainActivity.getAktuellerDog() != null) {
+        if (aktuellerDoggo != null) {
 
-            editName.setText(mainActivity.getAktuellerDog().getName());
-            editRasse.setText(mainActivity.getAktuellerDog().getRasse());
-            editGroesse.setText(mainActivity.getAktuellerDog().getGroesse().toString());
-            editBeschreibung.setText(mainActivity.getAktuellerDog().getBeschreibung());
-            editAlter.setText(mainActivity.getAktuellerDog().getAlter().toString());
+            editName.setText(aktuellerDoggo.getName());
+            editRasse.setText(aktuellerDoggo.getRasse());
+            editGroesse.setText(aktuellerDoggo.getGroesse().toString());
+            editBeschreibung.setText(aktuellerDoggo.getBeschreibung());
+            editAlter.setText(aktuellerDoggo.getAlter().toString());
 
             // Werte fuer groupGeschlecht setzen
-            String geschlecht = mainActivity.getAktuellerDog().getGeschlecht(); // Replace with the actual method to get the value
+            String geschlecht = aktuellerDoggo.getGeschlecht(); // Replace with the actual method to get the value
             RadioButton radioButtonGeschlecht;
 
             if (geschlecht.equals("männlich")) {
@@ -132,7 +135,7 @@ public class DogFragment extends Fragment {
             }
 
             // Werte fuer groupKastriert setzen
-            boolean isKastriert = mainActivity.getAktuellerDog().getKastriert();
+            boolean isKastriert = aktuellerDoggo.getKastriert();
             RadioButton radioButtonKastriert;
 
             if (isKastriert == true) {
@@ -182,13 +185,13 @@ public class DogFragment extends Fragment {
                         selectedGender.equals("") ||
                         groesse == 0) {
                     //Dialogfenster als Hinweis, dass Felder vergessen wurden auszufuellen
-                    mainActivity.dialogNotification("Na hör mal",
+                    mainActivity.dialogNotification("Angaben unvollständig",
                             "Bitte kontrolliere, ob du alle Felder korrekt ausgefüllt hast.");
                     return;
                 }
 
                 // Dog in DB updaten oder erstellen
-                if (mainActivity.getAktuellerDog() == null) {
+                if (aktuellerDoggo == null) {
                     Dog doggo = new Dog(
                             UUID.randomUUID(),
                             mainActivity.getAktuellerUser().getId(),
@@ -214,7 +217,7 @@ public class DogFragment extends Fragment {
 
                 } else {
                     Dog doggo = new Dog(
-                            mainActivity.getAktuellerDog().getId(),
+                            aktuellerDoggo.getId(),
                             mainActivity.getAktuellerUser().getId(),
                             String.valueOf(editName.getText()),
                             Integer.valueOf(String.valueOf(editAlter.getText())),
@@ -243,11 +246,13 @@ public class DogFragment extends Fragment {
                 BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
                 navBar.setVisibility(View.VISIBLE);
 
+                // Dog in Activity updaten
+                mainActivity.setAktuellerDog(null);
+
                 // In anderes Fragment weiterleiten
                 Navigation.findNavController(getView()).navigate(R.id.navigation_animals);
 
-                // Dog in Activity updaten
-                mainActivity.setAktuellerDog(null);
+
             }
         });
     }
