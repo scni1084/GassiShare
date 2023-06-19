@@ -16,8 +16,6 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.function.Predicate;
-
 import hska.gassishare.MainActivity;
 import hska.gassishare.R;
 import hska.gassishare.data.entity.User;
@@ -146,13 +144,12 @@ public class PersonFragment extends Fragment {
                 // Passwort wurde verändert
                 else {
                     if (String.valueOf(editNewPassword.getText()).equals("") ||
-                        !String.valueOf(editOldPassword.getText()).equals(aktuellerUser.getPasswort())) {
+                            !String.valueOf(editOldPassword.getText()).equals(aktuellerUser.getPasswort())) {
                         String oldpw = String.valueOf(editOldPassword.getText());
-                    // Kein neues Passwort eingegeben oder falsches altes Passwort
-                    mainActivity.dialogNotification("Fehler beim Speichern",
-                            "Kein neues Passwort eingegeben oder falsches altes Passwort");
-                }
-                    else {
+                        // Kein neues Passwort eingegeben oder falsches altes Passwort
+                        mainActivity.dialogNotification("Fehler beim Speichern",
+                                "Kein neues Passwort eingegeben oder falsches altes Passwort");
+                    } else {
                         User geaenderterUser = new User(
                                 aktuellerUser.getId(),
                                 aktuellerUser.getUsername(),
@@ -179,7 +176,8 @@ public class PersonFragment extends Fragment {
                         // Weiterleitung zu einem anderen Fragment
                         Navigation.findNavController(getView()).navigate(R.id.navigation_profile);
                     }
-            }}
+                }
+            }
         });
     }
 }
