@@ -111,6 +111,13 @@ public class DogFragment extends Fragment {
 
         dogSpeichern = getView().findViewById(R.id.dogSpeichern);
 
+        RadioButton radioButtonGeschlecht = view.findViewById(R.id.radioGeschlecht2);
+        radioButtonGeschlecht.setChecked(true);
+        RadioButton radioButtonKastriert;
+        radioButtonKastriert = view.findViewById(R.id.radioKastiert2);
+        radioButtonKastriert.setChecked(true);
+
+
         //Werte in TextViews setzen, falls Dog existiert
         if (aktuellerDoggo != null) {
 
@@ -122,7 +129,6 @@ public class DogFragment extends Fragment {
 
             // Werte fuer groupGeschlecht setzen
             String geschlecht = aktuellerDoggo.getGeschlecht(); // Replace with the actual method to get the value
-            RadioButton radioButtonGeschlecht;
 
             if (geschlecht.equals("männlich")) {
                 radioButtonGeschlecht = view.findViewById(R.id.radioGeschlecht1);
@@ -134,7 +140,7 @@ public class DogFragment extends Fragment {
 
             // Werte fuer groupKastriert setzen
             boolean isKastriert = aktuellerDoggo.getKastriert();
-            RadioButton radioButtonKastriert;
+
 
             if (isKastriert == true) {
                 radioButtonKastriert = view.findViewById(R.id.radioKastiert1);
