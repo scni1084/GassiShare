@@ -1,14 +1,21 @@
 package hska.gassishare.ui.profile;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
+import androidx.lifecycle.AndroidViewModel;
 
 /**
- * ViewModel für die Profilauswahl bzw. Home-Menü
+ * ViewModel für die Profilauswahl bzw. das Home-Menü
  */
-public class ProfileViewModel extends ViewModel {
+public class ProfileViewModel extends AndroidViewModel {
 
-    public ProfileViewModel() {
+    /**
+     * Erstellt ein neues ProfileViewModel-Objekt.
+     *
+     * @param application Die Anwendung, in der das ViewModel verwendet wird.
+     */
+    public ProfileViewModel(Application application) {
+        super(application);
     }
 
 }
