@@ -33,36 +33,53 @@ public class MapFragment extends Fragment {
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private MapView map; // Ein View für die Kartenansicht
 
+    /**
+     * Wird aufgerufen, wenn das Fragment erstellt wird.
+     *
+     * @param savedInstanceState Zustand des Fragments
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Lädt die Konfiguration für die OSM-Karte
-        // Parameter: ctx - Kontext der Aktivität
+        /* Lädt die Konfiguration für die OSM-Karte */
+        /* @param ctx - Kontext der Aktivität */
         Context ctx = getActivity().getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
     }
 
+    /**
+     * Erstellt und gibt die Benutzeroberfläche des Fragments zurück.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die View zu erstellen.
+     * @param container          Die ViewGroup, zu der die View hinzugefügt wird.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     * @return Die erstellte View des Fragments.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Erstellt die Benutzeroberfläche für das Fragment
-        // Parameter: inflater - Objekt zum Aufblasen der XML-Ressource
-        //            container - Ansichtsgruppe, in der das Fragment angezeigt wird
-        //            savedInstanceState - Zustand des Fragments
-        // Rückgabetyp: View - aufgeblasene Ansicht für das Fragment
+        /* Erstellt die Benutzeroberfläche für das Fragment */
+        /* @param inflater - Objekt zum Aufblasen der XML-Ressource */
+        /* @param container - Ansichtsgruppe, in der das Fragment angezeigt wird */
+        /* @param savedInstanceState - Zustand des Fragments */
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
+    /**
+     * Wird aufgerufen, nachdem die View des Fragments erstellt wurde.
+     *
+     * @param view               Die erstellte View des Fragments.
+     * @param savedInstanceState Ein Bundle mit dem zuletzt gespeicherten Zustand des Fragments.
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Wird aufgerufen, nachdem die Ansicht erstellt wurde
-        // Parameter: view - erstellte Ansicht des Fragments
-        //            savedInstanceState - Zustand des Fragments
+        super.onViewCreated(view, savedInstanceState);
+
         map = getView().findViewById(R.id.map);
 
-        // Überprüft und fordert Berechtigungen an, wenn erforderlich
-        // Parameter: permissions - Liste der anzufordernden Berechtigungen
+        /* Überprüft und fordert Berechtigungen an, wenn erforderlich */
+        /* @param permissions - Liste der anzufordernden Berechtigungen */
         requestPermissionsIfNecessary(new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         });
@@ -101,44 +118,48 @@ public class MapFragment extends Fragment {
                 new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
                     @Override
                     public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
-                        // Wird aufgerufen, wenn ein Marker einmal angetippt wird (optional)
                         return true;
                     }
-
                     @Override
                     public boolean onItemLongPress(final int index, final OverlayItem item) {
-                        // Wird aufgerufen, wenn ein Marker lange gedrückt wird (optional)
                         return true;
                     }
                 });
 
-        // Zeigt das Infofenster des Markers an, wenn er angetippt wird (optional)
+        // Zeigt das Infofenster des Markers an, wenn er angetippt wird
         mOverlay.setFocusItemsOnTap(true);
 
         // Fügt das Overlay der MapView hinzu
         map.getOverlays().add(mOverlay);
     }
 
+    /**
+     * Wird aufgerufen, wenn das Fragment wieder aktiv wird.
+     */
     @Override
     public void onResume() {
         super.onResume();
-        // Wird aufgerufen, wenn das Fragment wieder aktiv wird
         map.onResume();
     }
 
+    /**
+     * Wird aufgerufen, wenn das Fragment pausiert wird.
+     */
     @Override
     public void onPause() {
         super.onPause();
-        // Wird aufgerufen, wenn das Fragment pausiert wird
         map.onPause();
     }
 
+    /**
+     * Wird aufgerufen, nachdem die Berechtigungen angefordert wurden.
+     *
+     * @param requestCode  Der Anforderungscode.
+     * @param permissions  Liste der angeforderten Berechtigungen.
+     * @param grantResults Ergebnis der Berechtigungsanforderung.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        // Wird aufgerufen, nachdem die Berechtigungen angefordert wurden
-        // Parameter: requestCode - Anforderungscode
-        //            permissions - Liste der angeforderten Berechtigungen
-        //            grantResults - Ergebnis der Berechtigungsanforderung
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         for (int i = 0; i < grantResults.length; i++) {
             permissionsToRequest.add(permissions[i]);
@@ -151,9 +172,12 @@ public class MapFragment extends Fragment {
         }
     }
 
+    /**
+     * Fordert Berechtigungen an, wenn sie noch nicht erteilt wurden.
+     *
+     * @param permissions Liste der zu überprüfenden Berechtigungen.
+     */
     private void requestPermissionsIfNecessary(String[] permissions) {
-        // Fordert Berechtigungen an, wenn sie noch nicht erteilt wurden
-        // Parameter: permissions - Liste der zu überprüfenden Berechtigungen
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(getActivity(), permission)
