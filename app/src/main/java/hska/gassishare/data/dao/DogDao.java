@@ -12,7 +12,7 @@ import java.util.UUID;
 import hska.gassishare.data.entity.Dog;
 
 /**
- * Interface für den Zugriff auf die Dog-Datenbanktabelle.
+ * Interface für den Zugriff auf die Hunde-Datenbanktabelle.
  */
 @Dao
 public interface DogDao {
